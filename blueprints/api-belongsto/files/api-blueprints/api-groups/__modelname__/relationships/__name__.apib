@@ -1,0 +1,60 @@
+## <%= capitalizedCamelizedTarget %> <%= camelizedModuleName %>  [/<%= pluralizedTargetName %>/{id}/relationships/<%= dasherizedModuleName %>]
+### Add specified objects to the relationships [POST]
++ Parameters
+    + id (required, number, `1`) ... <%= capitalizedCamelizedTarget %> uniq ID
+
++ Request (application/vnd.api+json)
+  + Headers
+
+            Authorization: Bearer e9629c2a-6763-45f4-9d3a-1b2c7822febe
+  + Attributes (object)
+      + data (<%= capitalCamelizedModuleName %>Type) - related object serialized
+
+
++ Response 204 ()
+
+<!-- include(../../../utils/403-response.apib) -->
+<!-- include(../../../utils/422-response.apib) -->
+
+### Remove specified objects from the relationships [DELETE]
++ Parameters
+    + id (required, number, `1`) ... <%= capitalizedCamelizedTarget %> uniq ID
+
++ Request (application/vnd.api+json)
+  + Headers
+
+            Authorization: Bearer e9629c2a-6763-45f4-9d3a-1b2c7822febe
+  + Attributes (object)
+      + data (<%= capitalCamelizedModuleName %>Type) - related object serialized
+
+
++ Response 204 ()
+
+<!-- include(../../../utils/403-response.apib) -->
+<!-- include(../../../utils/404-response.apib) -->
+<!-- include(../../../utils/422-response.apib) -->
+
+### Replace the relationships with the specified object [PATCH]
+**NOTE** The following payload will clear the relationship:
+
+```javascript
+{
+    data: null
+}
+```
+
++ Parameters
+    + id (required, number, `1`) ... <%= capitalizedCamelizedTarget %> uniq ID
+
++ Request (application/vnd.api+json)
+  + Headers
+
+            Authorization: Bearer e9629c2a-6763-45f4-9d3a-1b2c7822febe
+  + Attributes (object)
+      + data (<%= capitalCamelizedModuleName %>Type) - related object serialized
+
+
++ Response 204 ()
+
+<!-- include(../../../utils/403-response.apib) -->
+<!-- include(../../../utils/422-response.apib) -->
