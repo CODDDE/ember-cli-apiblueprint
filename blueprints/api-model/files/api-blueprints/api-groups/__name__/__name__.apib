@@ -1,0 +1,74 @@
+## <%= capitalCamelizedModuleName %> [/<%= pluralizedModuleName %>]
+### Create a new <%= pluralizedModuleName %> [POST]
+
++ Request (application/vnd.api+json)
+  + Headers
+
+            Authorization: Bearer e9629c2a-6763-45f4-9d3a-1b2c7822febe
+  + Attributes (object)
+      + data (<%= capitalCamelizedModuleName %>) - full serialized object
+
+
++ Response 200 (application/vnd.api+json)
+  + Attributes (object)
+      + data (<%= capitalCamelizedModuleName %>) - created object
+
+<!-- include(../../utils/422-response.apib) -->
+
+## <%= capitalCamelizedModuleName %> [/<%= pluralizedModuleName %>?{ids}]
+### Retrieve a set of <%= capitalCamelizedModuleName %> [GET]
+
++ Parameters
+  + ids (required, array, `id[]=1&id[]=2`) ... <%= capitalCamelizedModuleName %> uniq IDs array
+
++ Request ()
+  + Headers
+
+            Authorization: Bearer e9629c2a-6763-45f4-9d3a-1b2c7822febe
+
++ Response 200 (application/vnd.api+json)
+  + Attributes (object)
+      + data (array[<%= capitalCamelizedModuleName %>], fixed-type, required) - required objects
+
+
+<!-- include(../../utils/403-response.apib) -->
+<!-- include(../../utils/404-array-response.apib) -->
+
+## <%= capitalCamelizedModuleName %> [/<%= pluralizedModuleName %>/{id}]
+### Get one <%= capitalCamelizedModuleName %> [GET]
+
++ Parameters
+  + id (required, number, `1`) ... <%= capitalCamelizedModuleName %> uniq ID
+
++ Request ()
+  + Headers
+
+            Authorization: Bearer e9629c2a-6763-45f4-9d3a-1b2c7822febe
+
++ Response 200 (application/vnd.api+json)
+  + Attributes (object)
+      + data (<%= capitalCamelizedModuleName %>) - required object
+
+
+<!-- include(../../utils/403-response.apib) -->
+<!-- include(../../utils/404-response.apib) -->
+
+
+### Update an <%= pluralizedModuleName %> [PUT]
+
++ Parameters
+  + id (required, number, `1`) ... Answer uniq ID
+
++ Request (application/vnd.api+json)
+  + Headers
+
+            Authorization: Bearer e9629c2a-6763-45f4-9d3a-1b2c7822febe
+  + Attributes (object)
+      + data (<%= capitalCamelizedModuleName %>Attributes) - full serialized object
+
+
++ Response 200 (application/vnd.api+json)
+  + Attributes (object)
+      + data (<%= capitalCamelizedModuleName %>) - full serialization of updated
+
+<!-- include(../../utils/422-response.apib) -->
