@@ -1,6 +1,4 @@
 /* eslint-env node */
-
-const fs = require('fs');
 const existsSync = require('exists-sync');
 const path = require('path');
 const EOL = require('os').EOL;
