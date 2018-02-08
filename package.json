@@ -1,17 +1,24 @@
 {
   "name": "ember-cli-apiblueprint",
-  "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "version": "0.1.0",
+  "description": "Compile Apiblueprint documents as API documentation inside of your Ember project or as standalone.",
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "apiblueprint",
+    "aglio"
   ],
   "license": "MIT",
-  "author": "",
+  "author": "Fabio Sanvido",
   "directories": {
     "doc": "doc",
     "test": "tests"
   },
-  "repository": "",
+  "homepage": "https://github.com/CODDDE/ember-cli-apiblueprint",
+  "bugs": "https://github.com/CODDDE/ember-cli-apiblueprint/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CODDDE/ember-cli-apiblueprint.git"
+  },
   "scripts": {
     "build": "ember build",
     "start": "ember server",
@@ -21,6 +28,7 @@
     "ember-cli-babel": "^6.6.0"
   },
   "devDependencies": {
+    "broccoli-apiblueprint": "^0.1.0",
     "broccoli-asset-rev": "^2.4.5",
     "ember-ajax": "^3.0.0",
     "ember-cli": "~2.16.2",
@@ -38,7 +46,8 @@
     "ember-load-initializers": "^1.0.0",
     "ember-resolver": "^4.0.0",
     "ember-source": "~2.16.0",
-    "loader.js": "^4.2.3"
+    "loader.js": "^4.2.3",
+    "mkdirp": "^0.5.1"
   },
   "engines": {
     "node": "^4.5 || 6.* || >= 7.*"
