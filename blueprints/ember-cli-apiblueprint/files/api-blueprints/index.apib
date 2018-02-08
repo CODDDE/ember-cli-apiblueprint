@@ -1,0 +1,32 @@
+FORMAT: 1A
+
+# <%= classifiedPackageName %> API
+
+Describe here all the API calls needed by your application to properly work.
+This document can be used to specify a formal *contrat* among the frontend application
+and the correspondent backend server, before starting any implementation.
+
+**Note** that this addon enforces [broccoli-apiblueprint]() which is based on the
+[aglio](https://github.com/danielgtaylor/aglio) compiler for the *Apibluprint* specification.
+All functionalities supported by *aglio* are also supported in this documents.
+
+
+# Group one
+## GroupName [/path/{id}]
+### Get request [GET]
+
++ Parameters
+  + id (required, number, `1`) ... uniq ID
+
++ Request ()
+  + Headers
+
+            Authorization: Bearer e9629c2a-6763-45f4-9d3a-1b2c7822febe
+
++ Response 200 (application/vnd.api+json)
+  + Body
+
+            {
+                message: 'json response'
+            }
+
