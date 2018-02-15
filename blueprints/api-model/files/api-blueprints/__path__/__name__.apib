@@ -1,8 +1,24 @@
-## <%= capitalCamelizedModuleName %>
-+ id: 1 (number, required) - unique ID
-+ type: <%= camelizedModuleName %> (string, required)
+## <%= capitalCamelizedModuleName %>Base (object)
++ type (enum[string], required)
+    + Members
+        + `<%= pluralizedModuleName %>`
 + attributes (<%= capitalCamelizedModuleName %>Attributes, required)
+
+
+## <%= capitalCamelizedModuleName %>Creation (object)
++ Include (<%= capitalCamelizedModuleName %>Base)
 + relationships (<%= capitalCamelizedModuleName %>Relationships, required)
+
+
+## <%= capitalCamelizedModuleName %>Update (object)
++ id: 1 (number, required) - unique ID
++ Include (<%= capitalCamelizedModuleName %>Base)
+
+
+## <%= capitalCamelizedModuleName %> (object)
++ id: 1 (number, required) - unique ID
++ Include (<%= capitalCamelizedModuleName %>Creation)
+
 
 ## <%= capitalCamelizedModuleName %>Attributes (object)
 + name (string) - attribute example
@@ -13,4 +29,6 @@
 
 ## <%= capitalCamelizedModuleName %>Type (object)
 + id: 1 (number, required) - unique ID
-+ type: <%= camelizedModuleName %> (string, required)
++ type (enum[string], required)
+    + Members
+        + `<%= pluralizedModuleName %>`
