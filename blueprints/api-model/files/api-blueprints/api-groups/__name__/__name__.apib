@@ -6,7 +6,7 @@
 
             Authorization: Bearer e9629c2a-6763-45f4-9d3a-1b2c7822febe
   + Attributes (object)
-      + data (<%= capitalCamelizedModuleName %>) - full serialized object
+      + data (<%= capitalCamelizedModuleName %>Creation)
 
 
 + Response 200 (application/vnd.api+json)
@@ -54,17 +54,17 @@
 <!-- include(../../utils/404-response.apib) -->
 
 
-### Update an <%= pluralizedModuleName %> [PUT]
+### Update an <%= pluralizedModuleName %> [PATCH]
 
 + Parameters
-  + id (required, number, `1`) ... Answer uniq ID
+  + id (required, number, `1`) ... <%= capitalCamelizedModuleName %> uniq ID
 
 + Request (application/vnd.api+json)
   + Headers
 
             Authorization: Bearer e9629c2a-6763-45f4-9d3a-1b2c7822febe
   + Attributes (object)
-      + data (<%= capitalCamelizedModuleName %>Attributes) - full serialized object
+      + data (<%= capitalCamelizedModuleName %>Update)
 
 
 + Response 200 (application/vnd.api+json)
@@ -72,3 +72,22 @@
       + data (<%= capitalCamelizedModuleName %>) - full serialization of updated
 
 <!-- include(../../utils/422-response.apib) -->
+<!-- include(../../utils/404-response.apib) -->
+<!-- include(../../utils/403-response.apib) -->
+
+### Delete specified <%= pluralizedModuleName %>  [DELETE]
++ Parameters
+    + id (required, number, `1`) ... <%= capitalCamelizedModuleName %> uniq ID
+
++ Request (application/vnd.api+json)
+  + Headers
+
+            Authorization: Bearer e9629c2a-6763-45f4-9d3a-1b2c7822febe
+
+  + Attributes (object)
+      + data (<%= capitalCamelizedModuleName %>Type)
+
+
++ Response 204 ()
+<!-- include(../../utils/404-response.apib) -->
+<!-- include(../../utils/403-response.apib) -->
