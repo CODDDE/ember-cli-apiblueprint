@@ -1,4 +1,20 @@
 ## <%= capitalizedCamelizedTarget %> <%= pluralCamelizedModuleName %>  [/<%= pluralizedTargetName %>/{id}/relationships/<%= pluralizedName %>]
+### Retreave all objects currently present in the relationship [GET]
++ Parameters
+    + id (required, number, `1`) ... <%= capitalizedCamelizedTarget %> uniq ID
+
++ Request ()
+  + Headers
+
+            Authorization: Bearer e9629c2a-6763-45f4-9d3a-1b2c7822febe
+
++ Response 200 (application/vnd.api+json)
+  + Attributes (object)
+      + data (array[<%= capitalCamelizedModuleName %>], fixed-type, required) - full serialization of the related objects
+
+<!-- include(../../../utils/403-response.apib) -->
+<!-- include(../../../utils/404-response.apib) -->
+
 ### Add specified objects to the relationships [POST]
 + Parameters
     + id (required, number, `1`) ... <%= capitalizedCamelizedTarget %> uniq ID

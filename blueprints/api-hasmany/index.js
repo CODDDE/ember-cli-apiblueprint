@@ -2,6 +2,7 @@
 const existsSync = require('exists-sync');
 const path = require('path');
 const EOL = require('os').EOL;
+var inflection = require('inflection');
 
 const {
   camelize,
@@ -9,11 +10,14 @@ const {
   dasherize
 } = require('ember-cli-string-utils');
 
+const indent = '    ';
+
 module.exports = {
   description: 'Adds a `hasMany` relationship to a model and the related calls to it´s group',
   
   availableOptions: [
     { name: 'to', type: String, default: 'Not present, model name is required' },
+    { name: 'linked', type: Boolean, default: false },
   ],
 
   locals(options) {
@@ -48,17 +52,30 @@ module.exports = {
         name,
       },
       to: model,
+      linked
     } = options;
     
-    const targetModel = path.join('api-blueprints', 'api-models', `${name}.apib`);
-    const sourceModel = path.join('api-blueprints', 'api-models', `${model}.apib`);
-    if (!existsSync(sourceModel) || !existsSync(targetModel)) {
-      throw `#### Error, either: \n ${sourceModel} \nor \n${targetModel} \ndoes not exist`
+    const targetModelFile = path.join('api-blueprints', 'api-models', `${name}.apib`);
+    const sourceModelFile = path.join('api-blueprints', 'api-models', `${model}.apib`);
+    if (!existsSync(sourceModelFile) || !existsSync(targetModelFile)) {
+      throw `#### Error, either: \n ${sourceModelFile} \nor \n${targetModelFile} \ndoes not exist`
     }
+    const sourceModelName = capitalize(camelize(model));
+    const targetModelName = capitalize(camelize(name));
+    const propertyName = inflection.pluralize(camelize(name));
+    const resourceName = inflection.pluralize(dasherize(name));
+    const nestedUnder = inflection.pluralize(dasherize(model));
+    const description = `All ${propertyName} for this ${sourceModelName}`;
     
-    let content = `+ ${camelize(name)}s (array[${capitalize(camelize(name))}Type]) - related objects`;
+    let content = `+ ${propertyName} (object)${EOL}`;
+    if (linked) {
+      content += `${indent}+ links (object)${EOL}`
+      content += `${indent}${indent}+ related: \`/api/v1/${nestedUnder}/1/relationships/${resourceName}\` (string, required) - ${description}`
+    } else {
+      content += `${indent}+ data (array[${targetModelName}]) - ${description}`
+    }
 
-    return this.insertIntoFile(sourceModel, content, {
+    return this.insertIntoFile(sourceModelFile, content, {
       after: `## ${capitalize(camelize(model))}Relationships (object)${EOL}`
     })
   },
