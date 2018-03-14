@@ -45,7 +45,7 @@ The `api-model` blueprint will generate a basic api blueprint with this syntax:
 This blueprint generates the `belongsTo` relationship for a model
 **NOTE** Before using this blueprint you need to have your two `api-models` generated
 
-Usage: `ember (generate/destroy/g/d) api-belongsto relationshipName --to=modelToAddRelationship [--modelName=realModelName]`
+Usage: `ember (generate/destroy/g/d) api-belongsto relationshipName --to=modelToAddRelationship [--modeltype=realModelName]`
 Where:
 * `relationshipName` is the name of the relationship that you want to add
 * `modelToAddRelationship` is the model that will be updated with this new relationship
@@ -64,7 +64,7 @@ This would be the generated endpoint to get the `post` of a `comment`:
 This blueprint generates the `hasMany` relationship for a model
 **NOTE** Before using this blueprint you need to have your two `api-models` generated
 
-Usage: `ember (generate/destroy/g/d) api-hasmany relationshipName --to=modelToAddRelationship [--modelName=realModelName]`
+Usage: `ember (generate/destroy/g/d) api-hasmany relationshipName --to=modelToAddRelationship [--modeltype=realModelName]`
 
 Where:
 * `relationshipName` is the name of the relationship that you want to add
