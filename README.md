@@ -4,26 +4,96 @@ This README outlines the details of collaborating on this Ember addon.
 
 ## Installation
 
-* `git clone <repository-url>` this repository
-* `cd ember-cli-apiblueprint`
-* `npm install`
+ * `open the directory where you want this addon to be installed`
+ * `ember install ember-cli-apiblueprint`
 
-## Running
+## How to use it
 
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
+* `api-model`
+
+Usage: `ember (generate/destroy/g/d) api-model modelName`
+
+E.G: generate the api-models for called `blog`, `post` and `comment`
+
+  `ember g api-model blog`
+  `ember g api-model post`
+  `ember g api-model comment`
+
+The `api-model` blueprint will generate a basic api blueprint with this syntax:
+
+```
+## Post
++ id: 1 (number, required) - unique ID
++ type: post (string, required)
++ attributes (PostAttributes, required)
++ relationships (PostRelationships, required)
+
+## PostAttributes (object)
++ name (string) - attribute example
+
+## PostRelationships (object)
+
+
+
+## PostType (object)
++ id: 1 (number, required) - unique ID
++ type: post (string, required)
+```
+
+ * `api-belongsto`
+
+This blueprint generates the `belongsTo` relationship for a model
+**NOTE** Before using this blueprint you need to have your two `api-models` generated
+
+Usage: `ember (generate/destroy/g/d) api-belongsto relationshipName --to=modelToAddRelationship [--modelName=realModelName]`
+Where:
+* `relationshipName` is the name of the relationship that you want to add
+* `modelToAddRelationship` is the model that will be updated with this new relationship
+* `readModelName` (optional), in case that the `relationshipName` is different from the  generated `api-model` name.
+
+E.G: `ember g api-belongsto post --to=comment`
+
+This means that a new `relationshipName.apib` file will be added in the `api-groups/modelToAddRelationship/relationships` folder, in this case
+a new `comment.apib` will be added in the `api-groups/post/relationships` folder.
+
+This would be the generated endpoint to get the `post` of a `comment`:
+`/comments/{id}/relationships/post` that MUST return a unique object
+
+* `api-hasmany`
+
+This blueprint generates the `hasMany` relationship for a model
+**NOTE** Before using this blueprint you need to have your two `api-models` generated
+
+Usage: `ember (generate/destroy/g/d) api-hasmany relationshipName --to=modelToAddRelationship [--modelName=realModelName]`
+
+Where:
+* `relationshipName` is the name of the relationship that you want to add
+* `modelToAddRelationship` is the model that will be updated with this new relationship
+* `readModelName` (optional), in case that the `relationshipName` is different from the  generated `api-model` name.
+
+E.G: `ember g api-hasmany post --to=blog`
+
+This means that a new `relationshipName.apib` file will be added in the `api-groups/modelToAddRelationship/relationships` folder, in this case
+a new `comment.apib` will be added in the `api-groups/post/relationships` folder.
+
+This would be the generated endpoint to get the `posts` of a `blog`:
+`/blog/{id}/relationships/posts` that MUST return an array
+
+## Generate the API file
+
+* `ember build`
+
+After building your app, you will see a message in the console like this:
+
+`Built project successfully. Stored in "dist/".`
+
+The API file, `index.html`, will be generated under the `dist/api-docs` folder
 
 ## Running Tests
 
 * `npm test` (Runs `ember try:each` to test your addon against multiple Ember versions)
 * `ember test`
 * `ember test --server`
-
-## Building
-
-* `ember build`
-
-For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
 
 ## Bugs
 - aglio crashes if an included fiel is not present, causing broccoli to crash
@@ -52,3 +122,7 @@ For more information on using ember-cli, visit [https://ember-cli.com/](https://
   - Option to create a *link related* relationship.
     - If nested resource, the nested URL should be used
   - enable option to choose the name of the relationship, default to model name as for now
+
+## Contributing
+
+See our [contribution guide](./CONTRIBUTING.md).
