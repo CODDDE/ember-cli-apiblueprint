@@ -10,6 +10,8 @@ const {
   dasherize
 } = require('ember-cli-string-utils');
 
+const { pluralize } = inflection;
+
 const indent = '    ';
 
 module.exports = {
@@ -17,19 +19,33 @@ module.exports = {
   
   availableOptions: [
     { name: 'to', type: String, default: 'Not present, model name is required' },
-    { name: 'linked', type: Boolean, default: false },
+    { name: 'linked', type: Boolean, default: false, description: 'Serialize has a link-related url in the source model',
+      aliases: [
+        { 'l': true }
+      ]
+    },
+    { name: 'required', type: Boolean, default: false, description: 'Mark this relationship required to create an instance of the main resource',
+      aliases: [
+        { 'r': true}
+      ]
+    },
+    { name: 'modeltype', type: String, description: 'Name of the model thah has to be related, defaults to relationship name (singularized)' }
   ],
 
   locals(options) {
     // Return custom template variables here.
+    const modelType = options.modeltype || options.entity.name;
+    
     return {
       targetModel: options.to,
       camelizedTarget: camelize(options.to),
       capitalizedCamelizedTarget: capitalize(camelize(options.to)),
-      pluralizedTargetName: `${dasherize(options.to)}s`,
+      pluralizedTargetName: pluralize(dasherize(options.to)),
       capitalCamelizedModuleName: capitalize(camelize(options.entity.name)),
-      pluralizedName: `${dasherize(options.entity.name)}s`,
-      pluralCamelizedModuleName: camelize(options.entity.name) + 's',
+      capitalCamelizedModelType: capitalize(camelize(modelType)),
+      pluralizedName: pluralize(dasherize(options.entity.name)),
+      pluralCamelizedModuleName: pluralize(camelize(options.entity.name)),
+      pluralCapilaCamelModuleName: capitalize(pluralize(camelize(options.entity.name))),
     };
   },
 
@@ -52,32 +68,42 @@ module.exports = {
         name,
       },
       to: model,
-      linked
+      linked,
+      required
     } = options;
     
-    const targetModelFile = path.join('api-blueprints', 'api-models', `${name}.apib`);
+    const modelType = options.modeltype || options.entity.name;
+    
+    const targetModelFile = path.join('api-blueprints', 'api-models', `${modelType}.apib`);
     const sourceModelFile = path.join('api-blueprints', 'api-models', `${model}.apib`);
     if (!existsSync(sourceModelFile) || !existsSync(targetModelFile)) {
       throw `#### Error, either: \n ${sourceModelFile} \nor \n${targetModelFile} \ndoes not exist`
     }
     const sourceModelName = capitalize(camelize(model));
-    const targetModelName = capitalize(camelize(name));
-    const propertyName = inflection.pluralize(camelize(name));
-    const resourceName = inflection.pluralize(dasherize(name));
-    const nestedUnder = inflection.pluralize(dasherize(model));
-    const description = `All ${propertyName} for this ${sourceModelName}`;
+    const targetModelName = capitalize(camelize(modelType));
+    const resourceName = pluralize(dasherize(name));
+    const nestedUnder = pluralize(dasherize(model));
+    const description = `All ${pluralize(camelize(name))} for this ${sourceModelName}`;
     
-    let content = `+ ${propertyName} (object)${EOL}`;
+    const relationshipSection = `## ${sourceModelName}${required ? 'RequiredRelationships' : 'OptionalRelationships'} (object)${EOL}`;
+    
+    let content = `+ \`${resourceName}\` (object)${EOL}`;
     if (linked) {
       content += `${indent}+ links (object)${EOL}`
       content += `${indent}${indent}+ related: \`/api/v1/${nestedUnder}/1/relationships/${resourceName}\` (string, required) - ${description}`
     } else {
-      content += `${indent}+ data (array[${targetModelName}]) - ${description}`
-    }
+      content += `${indent}+ data (array[${targetModelName}Type]) - ${description}`
+    } 
 
     return this.insertIntoFile(sourceModelFile, content, {
-      after: `## ${capitalize(camelize(model))}Relationships (object)${EOL}`
+      after: relationshipSection
     })
+    .then(()=>{
+      // Ensure `relationships` object is marked as required in schema
+      this.insertIntoFile(sourceModelFile, ', required', {
+        after: `+ relationships (${sourceModelName}Relationships`,
+      })
+    });
   },
   
   afterInstall(options) {
@@ -94,7 +120,7 @@ module.exports = {
       model,
       `${model}.apib`
     );
-    const pluralizedModelName = dasherize(name) + 's';
+    const pluralizedModelName = pluralize(dasherize(name));
     let relationshipCalls = `${EOL}<!-- include(./relationships/${pluralizedModelName}.apib) -->`
     
     return this.insertIntoFile(sourceModelGroup, relationshipCalls);

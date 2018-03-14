@@ -4,10 +4,13 @@
         + `<%= pluralizedModuleName %>`
 + attributes (<%= capitalCamelizedModuleName %>Attributes, required)
 
+## <%= capitalCamelizedModuleName %>RequiredRelationships (object)
+
+## <%= capitalCamelizedModuleName %>OptionalRelationships (object)
 
 ## <%= capitalCamelizedModuleName %>Creation (object)
 + Include (<%= capitalCamelizedModuleName %>Base)
-+ relationships (<%= capitalCamelizedModuleName %>Relationships, required)
++ relationships (<%= capitalCamelizedModuleName %>RequiredRelationships)
 
 
 ## <%= capitalCamelizedModuleName %>Update (object)
@@ -17,13 +20,16 @@
 
 ## <%= capitalCamelizedModuleName %> (object)
 + id: 1 (number, required) - unique ID
-+ Include (<%= capitalCamelizedModuleName %>Creation)
++ Include (<%= capitalCamelizedModuleName %>Base)
++ relationships (<%= capitalCamelizedModuleName %>Relationships)
 
 
 ## <%= capitalCamelizedModuleName %>Attributes (object)
 + name (string) - attribute example
 
 ## <%= capitalCamelizedModuleName %>Relationships (object)
++ Include (<%= capitalCamelizedModuleName %>RequiredRelationships)
++ Include (<%= capitalCamelizedModuleName %>OptionalRelationships)
 
 
 

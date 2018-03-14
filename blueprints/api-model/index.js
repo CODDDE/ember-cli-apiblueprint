@@ -2,6 +2,7 @@
 const existsSync = require('exists-sync');
 const path = require('path');
 const EOL = require('os').EOL;
+const inflection = require('inflection');
 const removeFromFile = require('../../lib/utilities/remove-from-file');
 
 const {
@@ -10,6 +11,8 @@ const {
   dasherize
 } = require('ember-cli-string-utils');
 
+const { pluralize } = inflection;
+
 module.exports = {
   description: '',
 
@@ -17,7 +20,8 @@ module.exports = {
     // Return custom template variables here.
     return {
       capitalCamelizedModuleName: capitalize(camelize(options.entity.name)),
-      pluralizedModuleName: `${dasherize(options.entity.name)}s`,
+      // pluralizedModuleName: `${dasherize(options.entity.name)}s`,
+      pluralizedModuleName: pluralize(dasherize(options.entity.name)),
     };
   },
   
