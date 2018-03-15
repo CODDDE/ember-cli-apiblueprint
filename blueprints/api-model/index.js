@@ -22,7 +22,7 @@ module.exports = {
       capitalCamelizedModuleName: capitalize(camelize(options.entity.name)),
       // pluralizedModuleName: `${dasherize(options.entity.name)}s`,
       pluralizedModuleName: pluralize(dasherize(options.entity.name)),
-      defaultModuleName: options.entity.name,
+      entityName: options.entity.name,
     };
   },
 
