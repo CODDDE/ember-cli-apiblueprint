@@ -25,15 +25,20 @@ This README outlines the details of collaborating on this Ember addon.
 
 Usage:
 
-`ember (generate|g / destroy|d) api-model modelName`
+```sh
+$ ember (generate|g / destroy|d) api-model modelName
+```
 
 ---
 
 E.G: generate the api-models for called `blog`, `post` and `comment`
+```sh
+  $ ember g api-model blog
 
-  `ember g api-model blog`
-  `ember g api-model post`
-  `ember g api-model comment`
+  $ ember g api-model post
+
+  $ ember g api-model comment
+```  
 
 The `api-model` blueprint will generate a basic api blueprint with this syntax:
 
@@ -67,8 +72,10 @@ This blueprint generates the `belongsTo` relationship for a model.
 **NOTE** Before using this blueprint you need to have your two `api-models` generated
 
 Usage:
+```sh
+$ ember (generate|g / destroy|d) api-belongsto relationshipName --to=modelToAddRelationship [--modeltype=realModelName]
+```
 
-`ember (generate|g / destroy|d) api-belongsto relationshipName --to=modelToAddRelationship [--modeltype=realModelName]`
 
 Where:
 
@@ -78,7 +85,10 @@ Where:
 
 ---
 
-E.G: `ember g api-belongsto post --to=comment`
+E.G:
+```sh
+$ ember g api-belongsto post --to=comment
+```
 
 This means that a new `relationshipName.apib` file will be added in the `api-groups/modelToAddRelationship/relationships` folder, in this case
 a new `post.apib` will be added in the `api-groups/comment/relationships` folder.
@@ -96,7 +106,9 @@ This blueprint generates the `hasMany` relationship for a model.
 
 Usage:
 
-`ember (generate|g / destroy|d) api-hasmany relationshipName --to=modelToAddRelationship [--modeltype=realModelName] [--linked]`
+```sh
+$ ember (generate|g / destroy|d) api-hasmany relationshipName --to=modelToAddRelationship [--modeltype=realModelName] [--linked]
+```
 
 Where:
 
@@ -134,7 +146,10 @@ Where:
 
 ---
 
-E.G: `ember g api-hasmany post --to=blog`
+E.G:
+```sh
+$ ember g api-hasmany post --to=blog
+```
 
 This means that a new `relationshipName.apib` file will be added in the `api-groups/modelToAddRelationship/relationships` folder, in this case
 a new `posts.apib` will be added in the `api-groups/blog/relationships` folder.
