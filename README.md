@@ -155,7 +155,7 @@ Where:
 
 E.G:
 ```sh
-$ ember g api-hasmany post --to=blog
+$ ember g api-hasmany comment --to=post
 ```
 
    **Basic relationship**
@@ -171,7 +171,7 @@ $ ember g api-hasmany post --to=blog
 
 E.G:
 ```sh
-$ ember g api-hasmany post --to=blog --required
+$ ember g api-hasmany comment --to=post --required
 ```
 
    **Required relationship**
@@ -194,7 +194,7 @@ $ ember g api-hasmany post --to=blog --required
 
 E.G:
 ```sh
-$ ember g api-hasmany post --to=blog --linked
+$ ember g api-hasmany comment --to=post --linked
 ```
 
    **Link related relationship**
@@ -213,10 +213,10 @@ $ ember g api-hasmany post --to=blog --linked
 ```
 
 This means that a new `relationshipName.apib` file will be added in the `api-groups/modelToAddRelationship/relationships` folder, in this case
-a new `posts.apib` will be added in the `api-groups/blog/relationships` folder.
+a new `comments.apib` will be added in the `api-groups/post/relationships` folder.
 
-This would be the generated endpoint to get the `posts` of a `blog`:
-`/blog/{id}/relationships/posts` that MUST return an array
+This would be the generated endpoint to get the `comments` of a `post`:
+`/post/{id}/relationships/comments` that MUST return an array
 
 ---
 
