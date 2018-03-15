@@ -87,12 +87,40 @@ This would be the generated endpoint to get the `post` of a `comment`:
 This blueprint generates the `hasMany` relationship for a model
 **NOTE** Before using this blueprint you need to have your two `api-models` generated
 
-Usage: `ember (generate|g / destroy|d) api-hasmany relationshipName --to=modelToAddRelationship [--modeltype=realModelName]`
+Usage: `ember (generate|g / destroy|d) api-hasmany relationshipName --to=modelToAddRelationship [--modeltype=realModelName] [--linked]`
 
 Where:
 * `relationshipName` is the name of the relationship that you want to add. **NOTE** the `relationshipName` will be pluralized by default, but you can set a value of `comments` and it won't be pluralized (as it already is pluralized)
 * `modelToAddRelationship` is the model that will be updated with this new relationship
 * `realModelName` (optional), in case that the `relationshipName` is different from the generated `api-model` name.
+* `linked`, when using `--linked` the relatioship will be treated as a `link-related` one.
+
+   E.G: post has many comments
+
+   **Basic relationship**
+
+   ```js
+   'relationships': {
+        'comments': {
+          'data': [
+            {
+              'id': 1,
+              'type': 'comments'
+            }
+          ]
+        }
+   ```
+   **Link related relationship**
+
+   ```js
+     'relationships': {
+       'comments': {
+            'links': {
+              'related': '/api/v1/posts/1/relationships/comments'
+            }
+          }
+        }
+   ```
 
 ---
 
