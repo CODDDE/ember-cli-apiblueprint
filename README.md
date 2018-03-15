@@ -146,13 +146,17 @@ This would be the generated endpoint to get the `posts` of a `blog`:
 
 ## Generate the API file
 
-* `ember build`
+```sh
+$ ember build
+```
 
 After building your app, you will see a message in the console like this:
 
-`Built project successfully. Stored in "dist/".`
+```js
+'Built project successfully. Stored in "dist/".'
+```
 
-The API file, `index.html`, will be generated under the `dist/api-docs` folder
+The API file, `index.html`, will be generated under the `dist/api-docs` folder.
 
 ## Running Tests
 
