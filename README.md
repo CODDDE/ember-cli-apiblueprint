@@ -11,7 +11,7 @@ This README outlines the details of collaborating on this Ember addon.
 
 * `api-model`
 
-Usage: `ember (generate/destroy/g/d) api-model modelName`
+Usage: `ember (generate|g / destroy|d) api-model modelName`
 
 E.G: generate the api-models for called `blog`, `post` and `comment`
 
@@ -45,11 +45,11 @@ The `api-model` blueprint will generate a basic api blueprint with this syntax:
 This blueprint generates the `belongsTo` relationship for a model
 **NOTE** Before using this blueprint you need to have your two `api-models` generated
 
-Usage: `ember (generate/destroy/g/d) api-belongsto relationshipName --to=modelToAddRelationship [--modeltype=realModelName]`
+Usage: `ember (generate|g / destroy|d) api-belongsto relationshipName --to=modelToAddRelationship [--modeltype=realModelName]`
 Where:
 * `relationshipName` is the name of the relationship that you want to add
 * `modelToAddRelationship` is the model that will be updated with this new relationship
-* `readModelName` (optional), in case that the `relationshipName` is different from the  generated `api-model` name.
+* `realModelName` (optional), in case that the `relationshipName` is different from the generated `api-model` name.
 
 E.G: `ember g api-belongsto post --to=comment`
 
@@ -64,12 +64,12 @@ This would be the generated endpoint to get the `post` of a `comment`:
 This blueprint generates the `hasMany` relationship for a model
 **NOTE** Before using this blueprint you need to have your two `api-models` generated
 
-Usage: `ember (generate/destroy/g/d) api-hasmany relationshipName --to=modelToAddRelationship [--modeltype=realModelName]`
+Usage: `ember (generate|g / destroy|d) api-hasmany relationshipName --to=modelToAddRelationship [--modeltype=realModelName]`
 
 Where:
 * `relationshipName` is the name of the relationship that you want to add
 * `modelToAddRelationship` is the model that will be updated with this new relationship
-* `readModelName` (optional), in case that the `relationshipName` is different from the  generated `api-model` name.
+* `realModelName` (optional), in case that the `relationshipName` is different from the generated `api-model` name.
 
 E.G: `ember g api-hasmany post --to=blog`
 
