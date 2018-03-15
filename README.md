@@ -82,7 +82,7 @@ Where:
 * `relationshipName` is the name of the relationship that you want to add
 * `modelToAddRelationship` is the model that will be updated with this new relationship
 * `realModelName` (optional), in case that the `relationshipName` is different from the generated `api-model` name.
-* `required` (optional), using the required modifier will add into this model's `POST` API endpoint the needed relationship as shown above
+* `required` (optional), using the required modifier will add into this model's `POST` API endpoint the needed relationship as shown below
 
 ---
 
@@ -149,7 +149,7 @@ Where:
 * `modelToAddRelationship` is the model that will be updated with this new relationship
 * `realModelName` (optional), in case that the `relationshipName` is different from the generated `api-model` name.
 * `linked`, when using `--linked` the relatioship will be treated as a `link-related` one.
-* `required` (optional), using the required modifier will add into this model's `POST` API endpoint the needed relationship as shown above
+* `required` (optional), using the required modifier will add into this model's `POST` API endpoint the needed relationship as shown below
 
 ---
 
@@ -221,6 +221,15 @@ This would be the generated endpoint to get the `comments` of a `post`:
 ---
 
 ## Generate the API file
+
+You can either do
+
+```sh
+$ ember serve
+```
+This will allow you to see the changes by refreshing the `index.html` by using live-reload.
+
+or
 
 ```sh
 $ ember build
