@@ -54,7 +54,7 @@ Where:
 E.G: `ember g api-belongsto post --to=comment`
 
 This means that a new `relationshipName.apib` file will be added in the `api-groups/modelToAddRelationship/relationships` folder, in this case
-a new `comment.apib` will be added in the `api-groups/post/relationships` folder.
+a new `post.apib` will be added in the `api-groups/comment/relationships` folder.
 
 This would be the generated endpoint to get the `post` of a `comment`:
 `/comments/{id}/relationships/post` that MUST return a unique object
@@ -74,7 +74,7 @@ Where:
 E.G: `ember g api-hasmany post --to=blog`
 
 This means that a new `relationshipName.apib` file will be added in the `api-groups/modelToAddRelationship/relationships` folder, in this case
-a new `comment.apib` will be added in the `api-groups/post/relationships` folder.
+a new `posts.apib` will be added in the `api-groups/blog/relationships` folder.
 
 This would be the generated endpoint to get the `posts` of a `blog`:
 `/blog/{id}/relationships/posts` that MUST return an array
