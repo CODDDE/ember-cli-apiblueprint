@@ -1,5 +1,5 @@
 ## <%= capitalCamelizedModuleName %> [/<%= pluralizedModuleName %>]
-### Create a new <%= defaultModuleName %> [POST]
+### Create a new <%= options.entity.name %> [POST]
 
 + Request (application/vnd.api+json)
   + Headers
@@ -54,7 +54,7 @@
 <!-- include(../../utils/404-response.apib) -->
 
 
-### Update an <%= defaultModuleName %> [PATCH]
+### Update an <%= options.entity.name %> [PATCH]
 
 + Parameters
   + id (required, number, `1`) ... <%= capitalCamelizedModuleName %> uniq ID
@@ -69,7 +69,7 @@
 
 + Response 200 (application/vnd.api+json)
   + Attributes (object)
-      + data (<%= defaultModuleName %>) - full serialization of updated
+      + data (<%= options.entity.name %>) - full serialization of updated
 
 <!-- include(../../utils/422-response.apib) -->
 <!-- include(../../utils/404-response.apib) -->
