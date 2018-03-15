@@ -1,5 +1,5 @@
 ## <%= pluralCapilaCamelModuleName %>  [/<%= pluralizedTargetName %>/{id}/relationships/<%= pluralizedName %>]
-### All <%= pluralCapilaCamelModuleName %> [GET]
+### All <%= pluralizedName %> [GET]
 + Parameters
     + id (required, number, `1`) ... <%= capitalizedCamelizedTarget %> uniq ID
 
@@ -15,7 +15,7 @@
 <!-- include(../../../utils/403-response.apib) -->
 <!-- include(../../../utils/404-response.apib) -->
 
-### Add <%= pluralCapilaCamelModuleName %> [POST]
+### Add <%= pluralizedName %> [POST]
 + Parameters
     + id (required, number, `1`) ... <%= capitalizedCamelizedTarget %> uniq ID
 
@@ -33,7 +33,7 @@
 <!-- include(../../../utils/404-response.apib) -->
 <!-- include(../../../utils/422-response.apib) -->
 
-### Remove <%= pluralCapilaCamelModuleName %> [DELETE]
+### Remove <%= pluralizedName %> [DELETE]
 + Parameters
     + id (required, number, `1`) ... <%= capitalizedCamelizedTarget %> uniq ID
 
@@ -51,7 +51,7 @@
 <!-- include(../../../utils/404-array-response.apib) -->
 <!-- include(../../../utils/422-response.apib) -->
 
-### Replace ALL <%= pluralCapilaCamelModuleName %> [PATCH]
+### Replace ALL <%= pluralizedName %> [PATCH]
 **NOTE** The following payload will clear the relationship:
 
 ```javascript
