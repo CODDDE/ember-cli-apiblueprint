@@ -1,17 +1,31 @@
 # ember-cli-apiblueprint
 
+This addon is aimed to generate the API definition for your ember application.
+
+It will create a new folder called `api-blueprints` under your project directory.
+Inside that folder, (after you generate your first `api-model`) you will find two folders: `api-groups` and `api-models`.
+
+The `api-groups` folder will contain the endpoints where to make requests and information about your models and also the same for its relationships and in the `api-models`
+folder you will find the model definitions (type, attrs, relationships).
+
+Inside these folders, some `.apib` files (a high-level API description language for web APIs) will be generated containing this data.
+
 This README outlines the details of collaborating on this Ember addon.
 
 ## Installation
 
- * `open the directory where you want this addon to be installed`
- * `ember install ember-cli-apiblueprint`
+ open the directory where you want this addon to be installed, then:
+ ```sh
+ $ ember install ember-cli-apiblueprint
+ ```
 
 ## How to use it
 
-* `api-model`
+### `api-model`
 
 Usage: `ember (generate|g / destroy|d) api-model modelName`
+
+---
 
 E.G: generate the api-models for called `blog`, `post` and `comment`
 
@@ -40,16 +54,23 @@ The `api-model` blueprint will generate a basic api blueprint with this syntax:
 + type: post (string, required)
 ```
 
- * `api-belongsto`
+This means that you will have to add the rest of the attributes for the generated api-models, as the `api-model` blueprint will only generate a basic model
+
+---
+
+### `api-belongsto`
 
 This blueprint generates the `belongsTo` relationship for a model
 **NOTE** Before using this blueprint you need to have your two `api-models` generated
 
 Usage: `ember (generate|g / destroy|d) api-belongsto relationshipName --to=modelToAddRelationship [--modeltype=realModelName]`
+
 Where:
 * `relationshipName` is the name of the relationship that you want to add
 * `modelToAddRelationship` is the model that will be updated with this new relationship
 * `realModelName` (optional), in case that the `relationshipName` is different from the generated `api-model` name.
+
+---
 
 E.G: `ember g api-belongsto post --to=comment`
 
@@ -59,7 +80,9 @@ a new `post.apib` will be added in the `api-groups/comment/relationships` folder
 This would be the generated endpoint to get the `post` of a `comment`:
 `/comments/{id}/relationships/post` that MUST return a unique object
 
-* `api-hasmany`
+---
+
+### `api-hasmany`
 
 This blueprint generates the `hasMany` relationship for a model
 **NOTE** Before using this blueprint you need to have your two `api-models` generated
@@ -67,9 +90,11 @@ This blueprint generates the `hasMany` relationship for a model
 Usage: `ember (generate|g / destroy|d) api-hasmany relationshipName --to=modelToAddRelationship [--modeltype=realModelName]`
 
 Where:
-* `relationshipName` is the name of the relationship that you want to add
+* `relationshipName` is the name of the relationship that you want to add. **NOTE** the `relationshipName` will be pluralized by default, but you can set a value of `comments` and it won't be pluralized (as it already is pluralized)
 * `modelToAddRelationship` is the model that will be updated with this new relationship
 * `realModelName` (optional), in case that the `relationshipName` is different from the generated `api-model` name.
+
+---
 
 E.G: `ember g api-hasmany post --to=blog`
 
@@ -78,6 +103,8 @@ a new `posts.apib` will be added in the `api-groups/blog/relationships` folder.
 
 This would be the generated endpoint to get the `posts` of a `blog`:
 `/blog/{id}/relationships/posts` that MUST return an array
+
+---
 
 ## Generate the API file
 
