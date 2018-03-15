@@ -73,7 +73,7 @@ This blueprint generates the `belongsTo` relationship for a model.
 
 Usage:
 ```sh
-$ ember (generate|g / destroy|d) api-belongsto relationshipName --to=modelToAddRelationship [--modeltype=realModelName]
+$ ember (generate|g / destroy|d) api-belongsto relationshipName --to=modelToAddRelationship [--modeltype=realModelName] [--required]
 ```
 
 
@@ -82,12 +82,45 @@ Where:
 * `relationshipName` is the name of the relationship that you want to add
 * `modelToAddRelationship` is the model that will be updated with this new relationship
 * `realModelName` (optional), in case that the `relationshipName` is different from the generated `api-model` name.
+* `required` (optional), using the required modifier will add into this model's `POST` API endpoint the needed relationship as shown above
 
 ---
 
 E.G:
 ```sh
 $ ember g api-belongsto post --to=comment
+```
+
+**Basic relationship**
+
+As they're not required this will be the API definition
+
+```js
+"data": {
+    ...,
+    "relationships": {}
+  }
+```
+
+E.G:
+```sh
+$ ember g api-belongsto post --to=comment --required
+```
+
+**Required relationship**
+
+```js
+"data": {
+    ...,
+    "relationships": {
+      "post": {
+        "data": {
+          "id": 1,
+          "type": "posts"
+        }
+      }
+    }
+  }
 ```
 
 This means that a new `relationshipName.apib` file will be added in the `api-groups/modelToAddRelationship/relationships` folder, in this case
@@ -116,39 +149,67 @@ Where:
 * `modelToAddRelationship` is the model that will be updated with this new relationship
 * `realModelName` (optional), in case that the `relationshipName` is different from the generated `api-model` name.
 * `linked`, when using `--linked` the relatioship will be treated as a `link-related` one.
-
-   E.G: post has many comments
-
-   **Basic relationship**
-
-   ```js
-   'relationships': {
-        'comments': {
-          'data': [
-            {
-              'id': 1,
-              'type': 'comments'
-            }
-          ]
-        }
-   ```
-   **Link related relationship**
-
-   ```js
-     'relationships': {
-       'comments': {
-            'links': {
-              'related': '/api/v1/posts/1/relationships/comments'
-            }
-          }
-        }
-   ```
+* `required` (optional), using the required modifier will add into this model's `POST` API endpoint the needed relationship as shown above
 
 ---
 
 E.G:
 ```sh
 $ ember g api-hasmany post --to=blog
+```
+
+   **Basic relationship**
+
+   As they're not required this will be the API definition
+
+```js
+ "data": {
+   ...,
+   "relationships": {}
+ }
+```
+
+E.G:
+```sh
+$ ember g api-hasmany post --to=blog --required
+```
+
+   **Required relationship**
+
+```js
+ "data": {
+   ...,
+   "relationships": {
+     "comments": {
+        "data": [
+          {
+            "id": 1,
+            "type": "comments"
+          }
+        ]
+      }
+    }
+ }
+```
+
+E.G:
+```sh
+$ ember g api-hasmany post --to=blog --linked
+```
+
+   **Link related relationship**
+
+```js
+"data": {
+ ...,
+ "relationships": {
+   "comments": {
+      "links": {
+        "related": "/api/v1/posts/1/relationships/comments"
+      }
+    }
+  }
+}
 ```
 
 This means that a new `relationshipName.apib` file will be added in the `api-groups/modelToAddRelationship/relationships` folder, in this case
