@@ -90,7 +90,8 @@ module.exports = {
     let content = `+ \`${resourceName}\` (object)${EOL}`;
     if (linked) {
       content += `${indent}+ links (object)${EOL}`
-      content += `${indent}${indent}+ related: \`/api/v1/${nestedUnder}/1/relationships/${resourceName}\` (string, required) - ${description}`
+      content += `${indent}${indent}+ self: \`/api/v1/${nestedUnder}/1/relationships/${resourceName}\` (string, required) - ${description}${EOL}`
+      content += `${indent}${indent}+ related: \`/api/v1/${nestedUnder}/1/${resourceName}\` (string, required) - ${description}`
     } else {
       content += `${indent}+ data (array[${targetModelName}Type]) - ${description}`
     } 

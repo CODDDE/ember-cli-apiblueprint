@@ -1,4 +1,4 @@
-## <%= pluralCapilaCamelModuleName %>  [/<%= pluralizedTargetName %>/{id}/relationships/<%= pluralizedName %>]
+## <%= pluralCapilaCamelModuleName %> related resources  [/<%= pluralizedTargetName %>/{id}/<%= pluralizedName %>]
 ### All <%= pluralizedName %> [GET]
 + Parameters
     + id (required, number, `1`) ... <%= capitalizedCamelizedTarget %> uniq ID
@@ -15,6 +15,23 @@
 <!-- include(../../../utils/403-response.apib) -->
 <!-- include(../../../utils/404-response.apib) -->
 
+## <%= pluralCapilaCamelModuleName %> relationship [/<%= pluralizedTargetName %>/{id}/relationships/<%= pluralizedName %>]
+### All <%= pluralizedName %> [GET]
++ Parameters
+    + id (required, number, `1`) ... <%= capitalizedCamelizedTarget %> uniq ID
+
++ Request ()
+  + Headers
+
+            Authorization: Bearer e9629c2a-6763-45f4-9d3a-1b2c7822febe
+
++ Response 200 (application/vnd.api+json)
+  + Attributes (object)
+      + data (array[<%= capitalCamelizedModelType %>Type], fixed-type) - related objects serialized
+
+<!-- include(../../../utils/403-response.apib) -->
+<!-- include(../../../utils/404-response.apib) -->
+
 ### Add <%= pluralizedName %> [POST]
 + Parameters
     + id (required, number, `1`) ... <%= capitalizedCamelizedTarget %> uniq ID
@@ -27,7 +44,7 @@
       + data (array[<%= capitalCamelizedModelType %>Type]) - related objects serialized
 
 
-+ Response 204 ()
++ Response 201 ()
 
 <!-- include(../../../utils/403-response.apib) -->
 <!-- include(../../../utils/404-response.apib) -->
@@ -71,7 +88,7 @@
       + data (array[<%= capitalCamelizedModelType %>Type]) - related objects serialized
 
 
-+ Response 204 ()
++ Response 200 ()
 
 <!-- include(../../../utils/403-response.apib) -->
 <!-- include(../../../utils/404-response.apib) -->
