@@ -1,6 +1,19 @@
 # ember-cli-apiblueprint
 
-This addon is aimed to generate the API definition for your ember application.
+This addon is aimed at the generatation of a [JSONAPI](www.jsonapi.org) compliant API interface documentation file,
+written in [Apiblueprint](https://apiblueprint.org/) syntax. It provides a set of *ember-cli blueprints* that can be
+used to easily generate standard endpoint groups, more complex calls and detailed description is left up to you.
+
+## Table of contents
+
+- Introduction
+- [Installation](#installation)
+- Blueprints
+  - [api-model](#api-model)
+  - [api-belongsto](#api-belongsto)
+  - [api-hasmany](#api-hasmany)
+- [Generate documentation](#generate-documentation)
+- [Contribute](#contribute)
 
 It will create a new folder called `api-blueprints` under your project directory.
 Inside that folder, (after you generate your first `api-model`) you will find two folders: `api-groups` and `api-models`.
@@ -220,14 +233,14 @@ This would be the generated endpoint to get the `comments` of a `post`:
 
 ---
 
-## Generate the API file
+## Generate documentation
 
-You can either do
+You can either execute
 
 ```sh
 $ ember serve
 ```
-This will allow you to see the changes by refreshing the `index.html` by using live-reload.
+HTML compiled output is then accesible at `localhost:4200/api-docs/index.html`.
 
 or
 
@@ -235,41 +248,10 @@ or
 $ ember build
 ```
 
-After building your app, you will see a message in the console like this:
+After building your project, the compiled HTML docuemntation can be found under the `dist/api-docs` folder
+in a single `index.html` file.
 
-```js
-'Built project successfully. Stored in "dist/".'
-```
 
-The API file, `index.html`, will be generated under the `dist/api-docs` folder.
-
-## Running Tests
-
-* `npm test` (Runs `ember try:each` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
-
-### Considering for implementation
-- search apiblueprint specs for "constant"
-- add "required-on-create" && "optional-on-create" (aka "roc"&"ooc")
-  - roc:
-    - belongsTo should not create POST DELETE methods on the relationship endpoint, nor clear on PATCH
-    - hasMany should not allow clear on PATCH
-- singularize namesm when needed
-- use ember inflector for pluralization
-- add a `readOnly` section for attributes (not included in PATCHes)
-- add `readOnly` options in relationships (ex: hasmany<->belogsto obj only associated through their post)
-- enclose .apib files into `index` folder in order to create a "page" index folder
-  - add "page" blueprint to create multiple api pages
-- make api-model interactive
-  - enable option for *nested* resources (ex: `/me/{useid}/posts`)
-- belongsto & hasmany blueprints (should this be interactive?)
-  - refactor to common code
-  - enable option for *nested* resources (ex: `/me/{useid}/posts`)
-  - Option to create a *link related* relationship.
-    - If nested resource, the nested URL should be used
-  - enable option to choose the name of the relationship, default to model name as for now
-
-## Contributing
+## Contribute
 
 See our [contribution guide](./CONTRIBUTING.md).
