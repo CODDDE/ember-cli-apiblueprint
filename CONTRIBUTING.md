@@ -8,6 +8,10 @@ Provide a good description for your pull request - what does it add, why is that
 Sadly, no tests yet, but we'd happly accept contribution in that field! :-)
 
 ### Currently under consideration
+- enable option for *nested* resources (ex: `/me/{useid}/posts`)
+- enable option for *nested* resources (ex: `/me/{useid}/posts`)
+  - Option to create a *link related* relationship.
+    - If nested resource, the nested URL should be used
 - add "required-on-create" && "optional-on-create" (aka "roc"&"ooc")
   - roc:
     - belongsTo should not create POST DELETE methods on the relationship endpoint, nor clear on PATCH
@@ -21,11 +25,7 @@ Sadly, no tests yet, but we'd happly accept contribution in that field! :-)
 - enclose .apib files into `index` folder in order to create a "page" index folder
   - add "page" blueprint to create multiple api pages
 - make api-model interactive
-  - enable option for *nested* resources (ex: `/me/{useid}/posts`)
+
 - belongsto & hasmany blueprints (should this be interactive?)
-  - refactor to common code
-  - enable option for *nested* resources (ex: `/me/{useid}/posts`)
-  - Option to create a *link related* relationship.
-    - If nested resource, the nested URL should be used
-  - enable option to choose the name of the relationship, default to model name as for now
+- refactor to common code
 - search apiblueprint specs for "constant"
