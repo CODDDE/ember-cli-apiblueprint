@@ -1,5 +1,5 @@
 ## <%= capitalCamelizedModuleName %> [/<%= pluralizedModuleName %>]
-### Create a new <%= pluralizedModuleName %> [POST]
+### Create a new <%= entityName %> [POST]
 
 + Request (application/vnd.api+json)
   + Headers
@@ -16,7 +16,7 @@
 <!-- include(../../utils/422-response.apib) -->
 
 ## <%= capitalCamelizedModuleName %> [/<%= pluralizedModuleName %>?{ids}]
-### Retrieve a set of <%= capitalCamelizedModuleName %> [GET]
+### Retrieve a set of <%= pluralizedModuleName %> [GET]
 
 + Parameters
   + ids (required, array, `id[]=1&id[]=2`) ... <%= capitalCamelizedModuleName %> uniq IDs array
@@ -35,7 +35,7 @@
 <!-- include(../../utils/404-array-response.apib) -->
 
 ## <%= capitalCamelizedModuleName %> [/<%= pluralizedModuleName %>/{id}]
-### Get one <%= capitalCamelizedModuleName %> [GET]
+### Get one <%= entityName %> [GET]
 
 + Parameters
   + id (required, number, `1`) ... <%= capitalCamelizedModuleName %> uniq ID
@@ -54,7 +54,7 @@
 <!-- include(../../utils/404-response.apib) -->
 
 
-### Update an <%= pluralizedModuleName %> [PATCH]
+### Update <%=/[aeiouAEIOU]/.test(entityName.charAt(0)) ? 'an' : 'a' %> <%= entityName %> [PATCH]
 
 + Parameters
   + id (required, number, `1`) ... <%= capitalCamelizedModuleName %> uniq ID
@@ -75,7 +75,7 @@
 <!-- include(../../utils/404-response.apib) -->
 <!-- include(../../utils/403-response.apib) -->
 
-### Delete specified <%= pluralizedModuleName %>  [DELETE]
+### Delete specified <%= entityName %>  [DELETE]
 + Parameters
     + id (required, number, `1`) ... <%= capitalCamelizedModuleName %> uniq ID
 
