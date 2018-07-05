@@ -6,7 +6,7 @@ used to easily generate standard endpoint groups, more complex calls and detaile
 
 ## Table of contents
 
-- Introduction
+- [Introduction](#introduction)
 - [Installation](#installation)
 - Blueprints
   - [api-model](#api-model)
@@ -15,6 +15,46 @@ used to easily generate standard endpoint groups, more complex calls and detaile
 - [Generate documentation](#generate-documentation)
 - [Contribute](#contribute)
 
+
+## Introduction
+
+The addon provides a set of blueprints easying the creation of a JSONAPI compliant API interface. The resulting documentation project
+will be located under the `api-blueprints` folder and is structured following the concepts of *model*, *group* and *relationship*.
+
+"Model" correspondes to the JSONAPI concept of *resourcce* while "group" represents a collection of endpoints as per the APIBlueprint
+specification. "Relationship" includes either the *to-one* as well as the *to-many* relationships described in the JSONAPI specification.
+
+## Installation
+
+The project is shipped as an ember-cli addon, thus an ember-cli project is required in order to use this addon.
+If you are new to ember-cli we suggest you to breafily read its (guide)[http://ember-cli.com] but ember-related information is not
+needed to work with api-blueprints. To create a new project:
+
+1. Install ember-cli globally: `npm install -g ember-cli`
+2. create a new project: `ember new my-awesome-docs`
+
+Inside your project folder, install the addon:
+
+ ```sh
+ $ ember install ember-cli-apiblueprint
+ ```
+
+The command will execute the default addon blueprint, creating the basic file structure, as detailed below. If it is not
+automatically created, try explicitely execute the blue print with `ember generate ember-cli-apiblueprints`.
+
+```sh
+├─┬ project-root
+  └─┬ app
+  └─┬ api-blueprints
+    └─┬ api-groups
+    └─┬ api-models
+    └─┬ utils
+  ├── index.apib
+  └── date-selector.json
+```
+
+ 
+Intalling the addon on your project will create a a new `api-blueprints` folder under the project root with the foll
 It will create a new folder called `api-blueprints` under your project directory.
 Inside that folder, (after you generate your first `api-model`) you will find two folders: `api-groups` and `api-models`.
 
@@ -23,16 +63,7 @@ folder you will find the model definitions (type, attrs, relationships).
 
 Inside these folders, some `.apib` files (a high-level API description language for web APIs) will be generated containing this data.
 
-This README outlines the details of collaborating on this Ember addon.
-
-## Installation
-
- open the directory where you want this addon to be installed, then:
- ```sh
- $ ember install ember-cli-apiblueprint
- ```
-
-## How to use it
+## ember-cli blueprints
 
 ### `api-model`
 
