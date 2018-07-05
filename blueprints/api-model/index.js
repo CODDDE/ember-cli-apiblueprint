@@ -40,16 +40,10 @@ module.exports = {
       return;
     }
     const capitalCamelizedModuleName = capitalize(camelize(options.entity.name));
-<<<<<<< Updated upstream
-    const content = `<!-- include(api-models/${options.entity.name}.apib) -->`;
-    const groupContent = `# Group ${capitalCamelizedModuleName} ${EOL}<!-- include(api-groups/${options.entity.name}/${options.entity.name}.apib) --> ${EOL}`;
-
-=======
     const dasherizedModuleName = dasherize(options.entity.name);
     const content = `<!-- include(api-models/${dasherizedModuleName}.apib) -->`;
     const groupContent = `# Group ${capitalCamelizedModuleName} ${EOL}<!-- include(api-groups/${dasherizedModuleName}/${dasherizedModuleName}.apib) --> ${EOL}`;
     
->>>>>>> Stashed changes
     return this.insertIntoFile(mainFile, EOL + this.sectionTitle)
       .then(() => {
         return this.insertIntoFile(mainFile, content, {
@@ -70,16 +64,10 @@ module.exports = {
     }
 
     const capitalCamelizedModuleName = capitalize(camelize(options.entity.name));
-<<<<<<< Updated upstream
-    const content = `<!-- include(api-models/${options.entity.name}.apib) -->`
-    const groupContent = `# Group ${capitalCamelizedModuleName} ${EOL}<!-- include(api-groups/${options.entity.name}/${options.entity.name}.apib) --> ${EOL}`;
-
-=======
     const dasherizedModuleName = dasherize(options.entity.name);
     const content = `<!-- include(api-models/${dasherizedModuleName}.apib) -->`
     const groupContent = `# Group ${capitalCamelizedModuleName} ${EOL}<!-- include(api-groups/${dasherizedModuleName}/${dasherizedModuleName}.apib) --> ${EOL}`;
     
->>>>>>> Stashed changes
     return removeFromFile(mainFile, content)
       .then(() => removeFromFile(mainFile, groupContent) )
       .then((resultValue)=>{
