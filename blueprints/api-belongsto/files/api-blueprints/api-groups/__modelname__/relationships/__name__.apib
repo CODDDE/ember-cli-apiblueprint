@@ -1,39 +1,4 @@
 ## <%= capitalCamelizedModuleName %>  [/<%= pluralizedTargetName %>/{id}/relationships/<%= dasherizedModuleName %>]
-### Add <%= camelizedModuleName %> [POST]
-+ Parameters
-    + id (required, number, `1`) ... <%= capitalizedCamelizedTarget %> uniq ID
-
-+ Request (application/vnd.api+json)
-  + Headers
-
-            Authorization: Bearer e9629c2a-6763-45f4-9d3a-1b2c7822febe
-  + Attributes (object)
-      + data (<%= capitalCamelizedModelType %>Type) - related object serialized
-
-
-+ Response 204 ()
-
-<!-- include(../../../utils/403-response.apib) -->
-<!-- include(../../../utils/422-response.apib) -->
-
-### Remove <%= camelizedModuleName %> [DELETE]
-+ Parameters
-    + id (required, number, `1`) ... <%= capitalizedCamelizedTarget %> uniq ID
-
-+ Request (application/vnd.api+json)
-  + Headers
-
-            Authorization: Bearer e9629c2a-6763-45f4-9d3a-1b2c7822febe
-  + Attributes (object)
-      + data (<%= capitalCamelizedModelType %>Type) - related object serialized
-
-
-+ Response 204 ()
-
-<!-- include(../../../utils/403-response.apib) -->
-<!-- include(../../../utils/404-response.apib) -->
-<!-- include(../../../utils/422-response.apib) -->
-
 ### Replace <%= camelizedModuleName %> [PATCH]
 **NOTE** The following payload will clear the relationship:
 
