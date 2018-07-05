@@ -249,13 +249,6 @@ The API file, `index.html`, will be generated under the `dist/api-docs` folder.
 * `ember test`
 * `ember test --server`
 
-## Bugs
-- aglio crashes if an included fiel is not present, causing broccoli to crash
-  - surraund with try-catch and reject the promise?
-- relationship should be wrapped in `data` obejcts
-- use dasherized names for properties in data structures
-- dasherized property names are not correctly compiled within data structures
-
 ### Considering for implementation
 - search apiblueprint specs for "constant"
 - add "required-on-create" && "optional-on-create" (aka "roc"&"ooc")
