@@ -83,7 +83,6 @@ $ ember generate api-model blogPost
 
 The execution of the blueprint will create the following files:
 
-<small><strong>Note:</strong> only relevant parts of the file structure is shown for brevity</small>
 ```sh
 ├─┬ project-root
   └─┬ api-blueprints
@@ -94,6 +93,8 @@ The execution of the blueprint will create the following files:
         └── blog-post.apib
   └── index.apib
 ```
+<small><strong>Note:</strong> only relevant parts of the file structure is shown for brevity</small>
+
 `api-groups/blog-post.apib` file containing the APIBlueprint description of standard JSONAPI calls for the the endpoint `/blog-post` covering the HTTP methods GET, POST, PATCH, DELETE for both a single *blogPost* resource as well as a collection of them.
 
 `api-models/blog-post.apib` file containing the data structures used to describe the resource. In order to add resource attributes, localize the `SoftClassAttributes` structure, which will contain a default *name* attribute.
@@ -115,160 +116,95 @@ The execution of this blueprint will remove all previously created files and fol
 
 This blueprint is used for the generation of the endpoints used to interact with a *to-one* relationship between two JSONAPI resources. Additionaly, the data structures of the related resources will be updated with the information needed in order to represent the relationship on JSONAPI documents.
 
-**Note** in order for this blueprint to properly work related resources must be already present in the project.
+**Note** in order for this blueprint to properly work, related resources must be already present in the project.
 
 #### Create a *to-one* relationship
-
-For the creation of the code used in the following example, we'll assume that both *blogPost* and *postComment* resources have been created.
-
+<small>For the creation of the code used in the following example, we'll assume that both *blogPost* and *postComment* resources have already been created.</small>
 
 ```sh
-$ ember generate api-belongsto post --to=blogComment
+$ ember generate api-belongsto post --to=blog-comment --modeltype=blog-post
 ```
 
+The execution of the blueprint will create the following files:
 
-Where:
-
-* `relationshipName` is the name of the relationship that you want to add
-* `modelToAddRelationship` is the model that will be updated with this new relationship
-* `realModelName` (optional), in case that the `relationshipName` is different from the generated `api-model` name.
-* `required` (optional), using the required modifier will add into this model's `POST` API endpoint the needed relationship as shown below
-
----
-
-E.G:
 ```sh
-$ ember g api-belongsto post --to=comment
+├─┬ project-root
+  └─┬ api-blueprints
+    └─┬ api-groups
+      └─┬ blog-comment
+        ├─┬ relationships
+          └── post.apib
+        └── blog-comment.apib
 ```
+<small><strong>Note:</strong> only relevant parts of the file structure is shown for brevity</small>
 
-**Basic relationship**
+The *relationships* folder is created and a new file identified with the name of the relationship (`post.api`) is created to describe the standard endpoints and operations available for the newly create relationship. Besides, the *api-groups/blog-comment/blog-coment.apib* file is updated to include the new calls into the resource APIBlueprint group.
 
-As they're not required this will be the API definition
+Additionally, the *api-models/blog-comment.apib* file is updated to reflect the presence of the new relationship in the data structure representing the blogComment resource.
 
-```js
-"data": {
-    ...,
-    "relationships": {}
-  }
-```
+The *api-belongsto* blueprints accepts the following parameters and options:
 
-E.G:
+| *ember generate api-belongsto relationshipName --to=targetResource --modeltype=relationshipResourceType* --required |
+| Param / option   | Accepted values | Description |
+| -------- | ------- | --- |
+| *relationshipName* | string | **Required** Custom name of the relationship |
+| *to* | resource name | **Required** The resource that will be updated with the new relationship |
+| *required* | no value is needed | **Optional** If present, the relationship will be added into the *resourceName*RequiredRelationships data structure. *Note* that, if the relationship is optional it will not be included in the example body for a creation request of the target resource |
+
+
+#### Delete a *to-one* relationship
+
 ```sh
-$ ember g api-belongsto post --to=comment --required
+$ ember destroy api-belongsto post --to=blog-comment --modeltype=blog-post
 ```
 
-**Required relationship**
+The execution of this blueprint will remove all previously created files and folder.
 
-```js
-"data": {
-    ...,
-    "relationships": {
-      "post": {
-        "data": {
-          "id": 1,
-          "type": "posts"
-        }
-      }
-    }
-  }
-```
+**Note**: in order to properly remove all related code, the blueprint must be executed with the exact set of options used during creation.
 
-This means that a new `relationshipName.apib` file will be added in the `api-groups/modelToAddRelationship/relationships` folder, in this case
-a new `post.apib` will be added in the `api-groups/comment/relationships` folder.
-
-This would be the generated endpoint to get the `post` of a `comment`:
-`/comments/{id}/relationships/post` that MUST return a unique object
-
----
 
 ### `api-hasmany`
 
-This blueprint generates the `hasMany` relationship for a model.
+This blueprint is used for the generation of the endpoints used to interact with a *to-many* relationship between two JSONAPI resources. Additionaly, the data structures of the related resources will be updated with the information needed in order to represent the relationship on JSONAPI documents.
 
-**NOTE** Before using this blueprint you need to have your two `api-models` generated
+**Note** in order for this blueprint to properly work, related resources must be already present in the project.
 
-Usage:
+#### Create a *to-many* relationship
+<small>For the creation of the code used in the following example, we'll assume that both *blogPost* and *postComment* resources have already been created.</small>
 
 ```sh
-$ ember (generate|g / destroy|d) api-hasmany relationshipName --to=modelToAddRelationship [--modeltype=realModelName] [--linked]
+$ ember generate api-hasmany comment --to=blog-post --modeltype=blog-comment
 ```
 
-Where:
+The execution of the blueprint will create the following files:
 
-* `relationshipName` is the name of the relationship that you want to add. **NOTE** the `relationshipName` will be pluralized by default, but you can set a value of `comments` and it won't be pluralized (as it already is pluralized)
-* `modelToAddRelationship` is the model that will be updated with this new relationship
-* `realModelName` (optional), in case that the `relationshipName` is different from the generated `api-model` name.
-* `linked`, when using `--linked` the relatioship will be treated as a `link-related` one.
-* `required` (optional), using the required modifier will add into this model's `POST` API endpoint the needed relationship as shown below
-
----
-
-E.G:
 ```sh
-$ ember g api-hasmany comment --to=post
+├─┬ project-root
+  └─┬ api-blueprints
+    └─┬ api-groups
+      └─┬ blog-post
+        ├─┬ relationships
+          └── comments.apib
+        └── blog-post.apib
 ```
+<small><strong>Note:</strong> only relevant parts of the file structure is shown for brevity</small>
 
-   **Basic relationship**
+The *relationships* folder is created and a new file identified with the pluralized name of the relationship (`comments.api`) is created to describe the standard endpoints and operations available for the newly create relationship. Besides, the *api-groups/blog-post/blog-post.apib* file is updated to include the new calls into the resource APIBlueprint group.
 
-   As they're not required this will be the API definition
+Additionally, the *api-models/blog-post.apib* file is updated to reflect the presence of the new relationship in the data structure representing the blogPost resource.
 
-```js
- "data": {
-   ...,
-   "relationships": {}
- }
-```
+The *api-hasmany* blueprints accepts the following parameters and options:
 
-E.G:
-```sh
-$ ember g api-hasmany comment --to=post --required
-```
+| *ember generate api-hasmany relationshipName --to=targetResource --modeltype=relationshipResourceType --required --linked* |
 
-   **Required relationship**
+| Param / option   | Accepted values | Description |
+| -------- | ------- | --- |
+| *relationshipName* | string | **Required** Custom name of the relationship. *Note* that the provided value will be automatically pluralized. |
+| *to* | resource name | **Required** The resource that will be updated with the new relationship |
+| *required* | no value is needed | **Optional** If present, the relationship will be added into the *resourceName*RequiredRelationships data structure. *Note* that, if the relationship is optional it will not be included in the example body for a creation request of the target resource |
+| *linked* | no value is needed | **Optional** If present, the relationship will be represented as a *links object* instead of a *resource object* as described in [JSONAPI specifications](http://jsonapi.org/format/#document-resource-object-relationships) |
 
-```js
- "data": {
-   ...,
-   "relationships": {
-     "comments": {
-        "data": [
-          {
-            "id": 1,
-            "type": "comments"
-          }
-        ]
-      }
-    }
- }
-```
 
-E.G:
-```sh
-$ ember g api-hasmany comment --to=post --linked
-```
-
-   **Link related relationship**
-
-```js
-"data": {
- ...,
- "relationships": {
-   "comments": {
-      "links": {
-        "related": "/api/v1/posts/1/relationships/comments"
-      }
-    }
-  }
-}
-```
-
-This means that a new `relationshipName.apib` file will be added in the `api-groups/modelToAddRelationship/relationships` folder, in this case
-a new `comments.apib` will be added in the `api-groups/post/relationships` folder.
-
-This would be the generated endpoint to get the `comments` of a `post`:
-`/post/{id}/relationships/comments` that MUST return an array
-
----
 
 ## Generate documentation
 
@@ -285,7 +221,7 @@ or
 $ ember build
 ```
 
-After building your project, the compiled HTML docuemntation can be found under the `dist/api-docs` folder
+After building your project, the compiled HTML documentation can be found under the `dist/api-docs` folder
 in a single `index.html` file.
 
 
