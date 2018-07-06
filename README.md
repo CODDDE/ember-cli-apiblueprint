@@ -27,7 +27,7 @@ specification. "Relationship" includes either the *to-one* as well as the *to-ma
 ## Installation
 
 The project is shipped as an ember-cli addon, thus an ember-cli project is required in order to use this addon.
-If you are new to ember-cli we suggest you to breafily read its (guide)[http://ember-cli.com] but ember-related information is not
+If you are new to ember-cli we, suggest you to breafily read its (guide)[http://ember-cli.com] but ember related information is not
 needed to work with api-blueprints. To create a new project:
 
 1. Install ember-cli globally: `npm install -g ember-cli`
@@ -40,20 +40,26 @@ Inside your project folder, install the addon:
  ```
 
 The command will execute the default addon blueprint, creating the basic file structure, as detailed below. If it is not
-automatically created, try explicitely execute the blue print with `ember generate ember-cli-apiblueprints`.
+automatically created, try explicitely execute the blueprint running `ember generate ember-cli-apiblueprints`.
 
 ```sh
 ├─┬ project-root
-  └─┬ app
   └─┬ api-blueprints
-    └─┬ api-groups
     └─┬ api-models
+    └─┬ api-groups
     └─┬ utils
-  ├── index.apib
-  └── date-selector.json
+      ├── 403-response.apib
+      ├── 404-array-response.apib
+      ├── 404-response.apib
+      ├── 409-response.apib
+      └── 422-response.apib
+  └── index.apib
 ```
 
- 
+- *api-models* folder will contain one filer per resource created vía the `api-model` blueprint, containing the data structures used in the definition of content for API requests / responses. More details in following sections.
+- *api-goups* folder will contain one folder per resource generated vía de `api-model` blueprint, representing an APIBluprint endpints group. More details in the following sections.
+- *utils* folder contains some standard response as per the JSONAPI specification.
+
 Intalling the addon on your project will create a a new `api-blueprints` folder under the project root with the foll
 It will create a new folder called `api-blueprints` under your project directory.
 Inside that folder, (after you generate your first `api-model`) you will find two folders: `api-groups` and `api-models`.
@@ -67,57 +73,57 @@ Inside these folders, some `.apib` files (a high-level API description language 
 
 ### `api-model`
 
-Usage:
+This blueprint is used for the generation of the datastructures needed for the representation of one JSONAPI resource, alongside with the base endpoints used to perform CRUD operation over the newly created resource.
+
+#### Create a resource
 
 ```sh
-$ ember (generate|g / destroy|d) api-model modelName
+$ ember generate api-model blogPost
 ```
 
----
+The execution of the blueprint will create the following files:
 
-E.G: generate the api-models for called `blog`, `post` and `comment`
+<small><strong>Note:</strong> only relevant parts of the file structure is shown for brevity</small>
 ```sh
-  $ ember g api-model blog
-
-  $ ember g api-model post
-
-  $ ember g api-model comment
-```  
-
-The `api-model` blueprint will generate a basic api blueprint with this syntax:
-
+├─┬ project-root
+  └─┬ api-blueprints
+    └─┬ api-models
+      └── blog-post.apib
+    └─┬ api-groups
+      └─┬ blog-post
+        └── blog-post.apib
+  └── index.apib
 ```
-## Post
-+ id: 1 (number, required) - unique ID
-+ type: post (string, required)
-+ attributes (PostAttributes, required)
-+ relationships (PostRelationships, required)
+`api-groups/blog-post.apib` file containing the APIBlueprint description of standard JSONAPI calls for the the endpoint `/blog-post` covering the HTTP methods GET, POST, PATCH, DELETE for both a single *blogPost* resource as well as a collection of them.
 
-## PostAttributes (object)
-+ name (string) - attribute example
-
-## PostRelationships (object)
+`api-models/blog-post.apib` file containing the data structures used to describe the resource. In order to add resource attributes, localize the `SoftClassAttributes` structure, which will contain a default *name* attribute.
 
 
 
-## PostType (object)
-+ id: 1 (number, required) - unique ID
-+ type: post (string, required)
+#### Delete a resource
+
+```sh
+$ ember destroy api-model blogPost
 ```
 
-This means that you will have to add the rest of the attributes for the generated api-models, as the `api-model` blueprint will only generate a basic model.
+The execution of this blueprint will remove all previously created files and folder.
 
----
+**Note**: in order to properly remove all related code, the blueprint must be executed with the exact set of options used during creation.
+
 
 ### `api-belongsto`
 
-This blueprint generates the `belongsTo` relationship for a model.
+This blueprint is used for the generation of the endpoints used to interact with a *to-one* relationship between two JSONAPI resources. Additionaly, the data structures of the related resources will be updated with the information needed in order to represent the relationship on JSONAPI documents.
 
-**NOTE** Before using this blueprint you need to have your two `api-models` generated
+**Note** in order for this blueprint to properly work related resources must be already present in the project.
 
-Usage:
+#### Create a *to-one* relationship
+
+For the creation of the code used in the following example, we'll assume that both *blogPost* and *postComment* resources have been created.
+
+
 ```sh
-$ ember (generate|g / destroy|d) api-belongsto relationshipName --to=modelToAddRelationship [--modeltype=realModelName] [--required]
+$ ember generate api-belongsto post --to=blogComment
 ```
 
 
