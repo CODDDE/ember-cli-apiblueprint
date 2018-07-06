@@ -144,7 +144,8 @@ Additionally, the *api-models/blog-comment.apib* file is updated to reflect the 
 
 The *api-belongsto* blueprints accepts the following parameters and options:
 
-| *ember generate api-belongsto relationshipName --to=targetResource --modeltype=relationshipResourceType* --required |
+*ember generate api-belongsto relationshipName --to=targetResource --modeltype=relationshipResourceType --required*
+
 | Param / option   | Accepted values | Description |
 | -------- | ------- | --- |
 | *relationshipName* | string | **Required** Custom name of the relationship |
@@ -195,7 +196,7 @@ Additionally, the *api-models/blog-post.apib* file is updated to reflect the pre
 
 The *api-hasmany* blueprints accepts the following parameters and options:
 
-| *ember generate api-hasmany relationshipName --to=targetResource --modeltype=relationshipResourceType --required --linked* |
+*ember generate api-hasmany relationshipName --to=targetResource --modeltype=relationshipResourceType --required --linked*
 
 | Param / option   | Accepted values | Description |
 | -------- | ------- | --- |
