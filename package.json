@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-apiblueprint",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Compile Apiblueprint documents as API documentation inside of your Ember project or as standalone.",
   "keywords": [
     "ember-addon",
