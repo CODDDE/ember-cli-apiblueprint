@@ -2,20 +2,39 @@
 + type (enum[string], required)
     + Members
         + `<%= pluralizedModuleName %>`
-+ attributes (<%= capitalCamelizedModuleName %>Attributes, required)
++ attributes (object)
+    + Include (<%= capitalCamelizedModuleName %>RequiredAttributes)
+    + Include (<%= capitalCamelizedModuleName %>Attributes)
+    + Include (<%= capitalCamelizedModuleName %>ReadOnlyAttributes)
 
 ## <%= capitalCamelizedModuleName %>RequiredRelationships (object)
 
 ## <%= capitalCamelizedModuleName %>OptionalRelationships (object)
 
+## <%= capitalCamelizedModuleName %>RequiredAttributes (object)
+
+## <%= capitalCamelizedModuleName %>ReadOnlyAttributes (object)
+
+## <%= capitalCamelizedModuleName %>Attributes (object)
++ name (string) - attribute example
+
+
 ## <%= capitalCamelizedModuleName %>Creation (object)
-+ Include (<%= capitalCamelizedModuleName %>Base)
++ type (enum[string], required)
+    + Members
+        + `<%= pluralizedModuleName %>`
++ attributes (<%= capitalCamelizedModuleName %>RequiredAttributes)
 + relationships (<%= capitalCamelizedModuleName %>RequiredRelationships)
 
 
 ## <%= capitalCamelizedModuleName %>Update (object)
 + id: 1 (number, required) - unique ID
-+ Include (<%= capitalCamelizedModuleName %>Base)
++ type (enum[string], required)
+    + Members
+        + `<%= pluralizedModuleName %>`
++ attributes (object)
+    + Include (<%= capitalCamelizedModuleName %>RequiredAttributes)
+    + Include (<%= capitalCamelizedModuleName %>Attributes)
 
 
 ## <%= capitalCamelizedModuleName %> (object)
@@ -23,9 +42,6 @@
 + Include (<%= capitalCamelizedModuleName %>Base)
 + relationships (<%= capitalCamelizedModuleName %>Relationships)
 
-
-## <%= capitalCamelizedModuleName %>Attributes (object)
-+ name (string) - attribute example
 
 ## <%= capitalCamelizedModuleName %>Relationships (object)
 + Include (<%= capitalCamelizedModuleName %>RequiredRelationships)
