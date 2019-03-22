@@ -2,7 +2,9 @@
 'use strict';
 
 const Apiblueprint = require('broccoli-apiblueprint');
+var mergeTrees    = require('broccoli-merge-trees');
 const path = require('path');
+var fs = require('fs');
 
 module.exports = {
   name: 'ember-cli-apiblueprint',
@@ -13,6 +15,8 @@ module.exports = {
     const defaults = require('lodash.defaultsdeep');
     const srcDir = 'api-blueprints';
     const includePath = path.join(this.project.root, srcDir);
+    const outputDir = 'api-docs';
+    const enumerablesPath = undefined;
     
     let defaultOptions = {
       /**
@@ -20,6 +24,10 @@ module.exports = {
        */
       enabled: true,
       srcDir,
+      outputPath: outputDir,
+      
+      // Own options
+      enumerablesPath,
       
       // Aglio options
       themeVariables: 'default',    //	Built-in color scheme or path to LESS or CSS
@@ -40,7 +48,23 @@ module.exports = {
   treeForPublic() {
     const inputNode = path.join(this.app.project.root, this._options.srcDir);
     const docs = new Apiblueprint([inputNode], this._options);
-    
-    return docs;
+    let enumNodes = [];
+
+    if (this._options.enumerablesPath) {
+      const enumerablesFolder = path.join(inputNode, this._options.enumerablesPath);
+      const enumerablesFiles = fs.readdirSync(enumerablesFolder);
+      const enumerablesOutputPath = path.join(this._options.outputPath, this._options.enumerablesPath);
+
+      enumNodes = enumerablesFiles.map((enumFile) => {
+        return new Apiblueprint([enumerablesFolder], {
+          indexFile: enumFile,
+          outputFile: `${enumFile.split('.')[0]}.html`,
+          outputPath: enumerablesOutputPath,
+        })
+      });
+    }
+
+
+    return mergeTrees([docs, ...enumNodes]);
   },
 };
