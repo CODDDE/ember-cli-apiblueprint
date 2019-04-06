@@ -4,7 +4,7 @@
 const Apiblueprint = require('broccoli-apiblueprint');
 var mergeTrees    = require('broccoli-merge-trees');
 const path = require('path');
-var fs = require('fs');
+const defaults = require('lodash.defaultsdeep');
 
 module.exports = {
   name: 'ember-cli-apiblueprint',
@@ -12,7 +12,6 @@ module.exports = {
   included(app){
     this._super.included.apply(this, arguments);
     
-    const defaults = require('lodash.defaultsdeep');
     const srcDir = 'api-blueprints';
     const includePath = path.join(this.project.root, srcDir);
     const outputDir = 'api-docs';
@@ -20,11 +19,17 @@ module.exports = {
     
     let defaultOptions = {
       /**
+       * Default configuration
+       */
+
+      indexFiles: ['index.apib'],
+
+      /**
        * Available options on broccoli-apibluprint
        */
       enabled: true,
       srcDir,
-      outputPath: outputDir,
+      outputPath: outputDir,      
       
       // Own options
       enumerablesPath,
@@ -37,34 +42,24 @@ module.exports = {
       themeStyle: 'default',        //	Built-in style name or path to LESS or CSS
       
       filterInput: true,            //  Filter \r and \t from the input
-      includePath,    // Base directory for relative includes
+      includePath,                  // Base directory for relative includes
       locals: {},                    //  Extra locals to pass to templates
       theme: 'default',             //  Theme name to load for rendering
     };
-    
     this._options = defaults(app.options['ember-cli-apiblueprint'] || {}, defaultOptions);
   },
   
   treeForPublic() {
     const inputNode = path.join(this.app.project.root, this._options.srcDir);
-    const docs = new Apiblueprint([inputNode], this._options);
-    let enumNodes = [];
-
-    if (this._options.enumerablesPath) {
-      const enumerablesFolder = path.join(inputNode, this._options.enumerablesPath);
-      const enumerablesFiles = fs.readdirSync(enumerablesFolder);
-      const enumerablesOutputPath = path.join(this._options.outputPath, this._options.enumerablesPath);
-
-      enumNodes = enumerablesFiles.map((enumFile) => {
-        return new Apiblueprint([enumerablesFolder], {
-          indexFile: enumFile,
-          outputFile: `${enumFile.split('.')[0]}.html`,
-          outputPath: enumerablesOutputPath,
-        })
+    const docNodes = this._options.indexFiles.map( indexFile => {
+      let buildOptions = Object.assign({}, this._options, {
+        indexFile,
+        outputFile: `${indexFile.split('.')[0]}.html`,
       });
-    }
 
+      return new Apiblueprint([inputNode], buildOptions);
+    });
 
-    return mergeTrees([docs, ...enumNodes]);
+    return mergeTrees(docNodes);
   },
 };
