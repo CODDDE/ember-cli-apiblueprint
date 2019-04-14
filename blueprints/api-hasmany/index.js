@@ -93,7 +93,7 @@ module.exports = {
       content += `${indent}${indent}+ self: \`/api/v1/${nestedUnder}/1/relationships/${resourceName}\` (string, required) - ${description}${EOL}`
       content += `${indent}${indent}+ related: \`/api/v1/${nestedUnder}/1/${resourceName}\` (string, required) - ${description}`
     } else {
-      content += `${indent}+ data (array[${targetModelName}Type]) - ${description}`
+      content += `${indent}+ data (array[${targetModelName}Type], fixed-type, required) - ${description}`
     } 
 
     return this.insertIntoFile(sourceModelFile, content, {
@@ -123,8 +123,12 @@ module.exports = {
     );
     const pluralizedModelName = pluralize(dasherize(name));
     let relationshipCalls = `${EOL}<!-- include(./relationships/${pluralizedModelName}.apib) -->`
-    
-    return this.insertIntoFile(sourceModelGroup, relationshipCalls);
+    let relatedResourceCalls = `${EOL}<!-- include(./related-resources/${pluralizedModelName}.apib) -->`
+
+    return this.insertIntoFile(sourceModelGroup, relatedResourceCalls)
+      .then(()=>{
+        return this.insertIntoFile(sourceModelGroup, relationshipCalls);
+      });
     
   }
 };
