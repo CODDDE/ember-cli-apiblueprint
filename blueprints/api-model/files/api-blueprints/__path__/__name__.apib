@@ -1,7 +1,10 @@
-## <%= capitalCamelizedModuleName %>Base (object)
+## <%= capitalCamelizedModuleName %>BaseType (object)
 + type (enum[string], required)
     + Members
         + `<%= pluralizedModuleName %>`
+
+## <%= capitalCamelizedModuleName %>Base (object)
++ Include <%= capitalCamelizedModuleName %>BaseType
 + attributes (object)
     + Include (<%= capitalCamelizedModuleName %>RequiredAttributes)
     + Include (<%= capitalCamelizedModuleName %>Attributes)
@@ -20,18 +23,14 @@
 
 
 ## <%= capitalCamelizedModuleName %>Creation (object)
-+ type (enum[string], required)
-    + Members
-        + `<%= pluralizedModuleName %>`
++ Include <%= capitalCamelizedModuleName %>BaseType
 + attributes (<%= capitalCamelizedModuleName %>RequiredAttributes)
 + relationships (<%= capitalCamelizedModuleName %>RequiredRelationships)
 
 
 ## <%= capitalCamelizedModuleName %>Update (object)
 + id: 1 (number, required) - unique ID
-+ type (enum[string], required)
-    + Members
-        + `<%= pluralizedModuleName %>`
++ Include <%= capitalCamelizedModuleName %>BaseType
 + attributes (object)
     + Include (<%= capitalCamelizedModuleName %>RequiredAttributes)
     + Include (<%= capitalCamelizedModuleName %>Attributes)
@@ -51,6 +50,4 @@
 
 ## <%= capitalCamelizedModuleName %>Type (object)
 + id: 1 (number, required) - unique ID
-+ type (enum[string], required)
-    + Members
-        + `<%= pluralizedModuleName %>`
++ Include <%= capitalCamelizedModuleName %>BaseType

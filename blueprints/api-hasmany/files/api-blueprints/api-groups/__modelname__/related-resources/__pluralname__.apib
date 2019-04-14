@@ -1,0 +1,105 @@
+## <%= pluralCapilaCamelModuleName %> related resources  [/<%= pluralizedTargetName %>/{<%= camelizedTarget %>id}/<%= pluralizedName %>]
+### Create a new <%= capitalCamelizedModuleName %> [POST]
+
++ Parameters
+  + <%= camelizedTarget %>id (required, number, `1`) ... Id of <%= capitalizedCamelizedTarget %> "owner" of this <%= capitalCamelizedModuleName %> 
+
++ Request (application/vnd.api+json)
+  + Headers
+
+            Authorization: Bearer e9629c2a-6763-45f4-9d3a-1b2c7822febe
+  + Attributes (object)
+      + data (<%= capitalCamelizedModuleName %>Creation)
+
+
++ Response 200 (application/vnd.api+json)
+  + Attributes (object)
+      + data (<%= capitalCamelizedModuleName %>) - created object
+
+<!-- include(../../../utils/401-response.apib) -->
+<!-- include(../../../utils/403-response.apib) -->
+<!-- include(../../../utils/422-response.apib) -->
+
+
+### All <%= pluralizedName %> [GET]
++ Parameters
+  + <%= camelizedTarget %>id (required, number, `1`) ... Id of <%= capitalizedCamelizedTarget %> "owner" of this <%= capitalCamelizedModuleName %> 
+
++ Request ()
+  + Headers
+
+            Authorization: Bearer e9629c2a-6763-45f4-9d3a-1b2c7822febe
+
++ Response 200 (application/vnd.api+json)
+  + Attributes (object)
+      + data (array[<%= capitalCamelizedModelType %>], fixed-type, required) - full serialization of the related objects
+
+<!-- include(../../../utils/401-response.apib) -->
+<!-- include(../../../utils/403-response.apib) -->
+<!-- include(../../../utils/404-response.apib) -->
+
+
+
+## Related <%= capitalCamelizedModuleName %> [/<%= pluralizedTargetName %>/{<%= camelizedTarget %>id}/<%= pluralizedName %>/{id}]
+### Get one <%= capitalCamelizedModuleName %> [GET]
+
++ Parameters
+  + <%= camelizedTarget %>id (required, number, `1`) ... Id of <%= capitalizedCamelizedTarget %> "owner" of this <%= capitalCamelizedModuleName %> 
+  + id (required, number, `1`) ... <%= capitalCamelizedModuleName %>  uniq ID
+
++ Request ()
+  + Headers
+
+            Authorization: Bearer e9629c2a-6763-45f4-9d3a-1b2c7822febe
+
++ Response 200 (application/vnd.api+json)
+  + Attributes (object)
+      + data (<%= capitalCamelizedModuleName %>) - required object
+
+<!-- include(../../../utils/401-response.apib) -->
+<!-- include(../../../utils/403-response.apib) -->
+<!-- include(../../../utils/404-response.apib) -->
+
+
+### Update an <%= capitalCamelizedModuleName %> [PATCH]
+
++ Parameters
+  + <%= camelizedTarget %>id (required, number, `1`) ... Id of <%= capitalizedCamelizedTarget %> "owner" of this <%= capitalCamelizedModuleName %> 
+  + id (required, number, `1`) ... <%= capitalCamelizedModuleName %>  uniq ID
+
++ Request (application/vnd.api+json)
+  + Headers
+
+            Authorization: Bearer e9629c2a-6763-45f4-9d3a-1b2c7822febe
+  + Attributes (object)
+      + data (<%= capitalCamelizedModuleName %>Update)
+
+
++ Response 200 (application/vnd.api+json)
+  + Attributes (object)
+      + data (<%= capitalCamelizedModuleName %>) - full serialization of updated
+
+<!-- include(../../../utils/401-response.apib) -->
+<!-- include(../../../utils/403-response.apib) -->
+<!-- include(../../../utils/404-response.apib) -->
+<!-- include(../../../utils/422-response.apib) -->
+
+### Delete specified <%= capitalCamelizedModuleName %>  [DELETE]
++ Parameters
+  + <%= camelizedTarget %>id (required, number, `1`) ... Id of <%= capitalizedCamelizedTarget %> "owner" of this <%= capitalCamelizedModuleName %> 
+  + id (required, number, `1`) ... <%= capitalCamelizedModuleName %>  uniq ID
+
++ Request (application/vnd.api+json)
+  + Headers
+
+            Authorization: Bearer e9629c2a-6763-45f4-9d3a-1b2c7822febe
+
+  + Attributes (object)
+      + data (<%= capitalCamelizedModuleName %>Type)
+
+
++ Response 204 ()
+
+<!-- include(../../../utils/401-response.apib) -->
+<!-- include(../../../utils/403-response.apib) -->
+<!-- include(../../../utils/404-response.apib) -->

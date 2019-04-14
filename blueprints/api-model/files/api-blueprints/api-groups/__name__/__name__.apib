@@ -13,6 +13,8 @@
   + Attributes (object)
       + data (<%= capitalCamelizedModuleName %>) - created object
 
+<!-- include(../../utils/401-response.apib) -->
+<!-- include(../../utils/403-response.apib) -->
 <!-- include(../../utils/422-response.apib) -->
 
 ## <%= capitalCamelizedModuleName %> [/<%= pluralizedModuleName %>?{ids}]
@@ -30,7 +32,7 @@
   + Attributes (object)
       + data (array[<%= capitalCamelizedModuleName %>], fixed-type, required) - required objects
 
-
+<!-- include(../../utils/401-response.apib) -->
 <!-- include(../../utils/403-response.apib) -->
 <!-- include(../../utils/404-array-response.apib) -->
 
@@ -49,7 +51,7 @@
   + Attributes (object)
       + data (<%= capitalCamelizedModuleName %>) - required object
 
-
+<!-- include(../../utils/401-response.apib) -->
 <!-- include(../../utils/403-response.apib) -->
 <!-- include(../../utils/404-response.apib) -->
 
@@ -71,9 +73,11 @@
   + Attributes (object)
       + data (<%= capitalCamelizedModuleName %>) - full serialization of updated
 
-<!-- include(../../utils/422-response.apib) -->
-<!-- include(../../utils/404-response.apib) -->
+<!-- include(../../utils/401-response.apib) -->
 <!-- include(../../utils/403-response.apib) -->
+<!-- include(../../utils/404-response.apib) -->
+<!-- include(../../utils/422-response.apib) -->
+
 
 ### Delete specified <%= entityName %>  [DELETE]
 + Parameters
@@ -89,5 +93,7 @@
 
 
 + Response 204 ()
-<!-- include(../../utils/404-response.apib) -->
+
+<!-- include(../../utils/401-response.apib) -->
 <!-- include(../../utils/403-response.apib) -->
+<!-- include(../../utils/404-response.apib) -->
