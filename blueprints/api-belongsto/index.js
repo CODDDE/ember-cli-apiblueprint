@@ -71,8 +71,8 @@ module.exports = {
     
     const relationshipSection = `## ${sourceModelName}${required ? 'RequiredRelationships' : 'OptionalRelationships'} (object)${EOL}`;
     
-    let content = `+ \`${resourceName}\` (object)${EOL}`;
-    content += `${indent}+ data (${targetModelName}Type) - ${description}`;
+    let content = `+ \`${resourceName}\` (object, required)${EOL}`;
+    content += `${indent}+ data (${targetModelName}Type, fixed-type, required, nullable) - ${description}`;
 
     return this.insertIntoFile(sourceModelFile, content, {
       after: relationshipSection
