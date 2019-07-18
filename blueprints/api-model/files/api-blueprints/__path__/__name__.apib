@@ -24,14 +24,14 @@
 
 ## <%= capitalCamelizedModuleName %>Creation (object)
 + Include <%= capitalCamelizedModuleName %>BaseType
-+ attributes (<%= capitalCamelizedModuleName %>RequiredAttributes)
-+ relationships (<%= capitalCamelizedModuleName %>RequiredRelationships)
++ attributes (<%= capitalCamelizedModuleName %>RequiredAttributes, required)
++ relationships (<%= capitalCamelizedModuleName %>RequiredRelationships, required)
 
 
 ## <%= capitalCamelizedModuleName %>Update (object)
 + id: 1 (number, required) - unique ID
 + Include <%= capitalCamelizedModuleName %>BaseType
-+ attributes (object)
++ attributes (object, required)
     + Include (<%= capitalCamelizedModuleName %>RequiredAttributes)
     + Include (<%= capitalCamelizedModuleName %>Attributes)
 
@@ -39,7 +39,7 @@
 ## <%= capitalCamelizedModuleName %> (object)
 + id: 1 (number, required) - unique ID
 + Include (<%= capitalCamelizedModuleName %>Base)
-+ relationships (<%= capitalCamelizedModuleName %>Relationships)
++ relationships (<%= capitalCamelizedModuleName %>Relationships, required)
 
 
 ## <%= capitalCamelizedModuleName %>Relationships (object)
