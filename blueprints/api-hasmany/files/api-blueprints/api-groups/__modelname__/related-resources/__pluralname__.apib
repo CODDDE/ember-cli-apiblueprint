@@ -9,12 +9,12 @@
 
             Authorization: Bearer e9629c2a-6763-45f4-9d3a-1b2c7822febe
   + Attributes (object)
-      + data (<%= capitalCamelizedModuleName %>Creation)
+      + data (<%= capitalCamelizedModuleName %>Creation, fixed-type, required)
 
 
 + Response 200 (application/vnd.api+json)
   + Attributes (object)
-      + data (<%= capitalCamelizedModuleName %>) - created object
+      + data (<%= capitalCamelizedModuleName %>, fixed-type, required) - created object
 
 <!-- include(../../../utils/401-response.apib) -->
 <!-- include(../../../utils/403-response.apib) -->
@@ -54,7 +54,7 @@
 
 + Response 200 (application/vnd.api+json)
   + Attributes (object)
-      + data (<%= capitalCamelizedModuleName %>) - required object
+      + data (<%= capitalCamelizedModuleName %>, fixed-type, required) - required object
 
 <!-- include(../../../utils/401-response.apib) -->
 <!-- include(../../../utils/403-response.apib) -->
@@ -72,12 +72,12 @@
 
             Authorization: Bearer e9629c2a-6763-45f4-9d3a-1b2c7822febe
   + Attributes (object)
-      + data (<%= capitalCamelizedModuleName %>Update)
+      + data (<%= capitalCamelizedModuleName %>Update, fixed-type, required)
 
 
 + Response 200 (application/vnd.api+json)
   + Attributes (object)
-      + data (<%= capitalCamelizedModuleName %>) - full serialization of updated
+      + data (<%= capitalCamelizedModuleName %>, fixed-type, required) - full serialization of updated
 
 <!-- include(../../../utils/401-response.apib) -->
 <!-- include(../../../utils/403-response.apib) -->
@@ -95,7 +95,7 @@
             Authorization: Bearer e9629c2a-6763-45f4-9d3a-1b2c7822febe
 
   + Attributes (object)
-      + data (<%= capitalCamelizedModuleName %>Type)
+      + data (<%= capitalCamelizedModuleName %>Type, required)
 
 
 + Response 204 ()
