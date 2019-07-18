@@ -1,11 +1,11 @@
 ## <%= capitalCamelizedModuleName %>BaseType (object)
-+ type (enum[string], required)
++ type (enum, required)
     + Members
-        + `<%= pluralizedModuleName %>`
+        + `<%= pluralizedModuleName %>` (string)
 
 ## <%= capitalCamelizedModuleName %>Base (object)
 + Include <%= capitalCamelizedModuleName %>BaseType
-+ attributes (object)
++ attributes (object, required)
     + Include (<%= capitalCamelizedModuleName %>RequiredAttributes)
     + Include (<%= capitalCamelizedModuleName %>Attributes)
     + Include (<%= capitalCamelizedModuleName %>ReadOnlyAttributes)
