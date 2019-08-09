@@ -51,7 +51,7 @@ module.exports = {
   
   treeForPublic() {
     const inputNode = path.join(this.app.project.root, this._options.srcDir);
-    const docNodes = this._options.indexFiles.map( indexFile => {
+    const htmlNodes = this._options.indexFiles.map( indexFile => {
       let buildOptions = Object.assign({}, this._options, {
         indexFile,
         outputFile: `${indexFile.split('.')[0]}.html`,
@@ -60,6 +60,15 @@ module.exports = {
       return new Apiblueprint([inputNode], buildOptions);
     });
 
-    return mergeTrees(docNodes);
+    const apibNodes = this._options.indexFiles.map( (indexFile => {
+      let buildOptions = Object.assign({}, this._options, {
+        indexFile,
+        outputFile: `${indexFile.split('.')[0]}.apib`,
+      });
+
+      return new Apiblueprint([inputNode], buildOptions);
+    }))
+
+    return mergeTrees([...apibNodes, ...htmlNodes]);
   },
 };
