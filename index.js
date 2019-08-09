@@ -61,7 +61,7 @@ module.exports = {
     });
 
     const apibNodes = this._options.indexFiles.map( (indexFile => {
-      let buildOptions = Object.assign({}, this._options, {
+      let buildOptions = Object.assign({}, {
         indexFile,
         outputFile: `${indexFile.split('.')[0]}.apib`,
       });
