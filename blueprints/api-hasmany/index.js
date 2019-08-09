@@ -87,9 +87,9 @@ module.exports = {
     
     const relationshipSection = `## ${sourceModelName}${required ? 'RequiredRelationships' : 'OptionalRelationships'} (object)${EOL}`;
     
-    let content = `+ \`${resourceName}\` (object)${EOL}`;
+    let content = `+ \`${resourceName}\` (object, required)${EOL}`;
     if (linked) {
-      content += `${indent}+ links (object)${EOL}`
+      content += `${indent}+ links (object, optional)${EOL}`
       content += `${indent}${indent}+ self: \`/api/v1/${nestedUnder}/1/relationships/${resourceName}\` (string, required) - ${description}${EOL}`
       content += `${indent}${indent}+ related: \`/api/v1/${nestedUnder}/1/${resourceName}\` (string, required) - ${description}`
     } else {

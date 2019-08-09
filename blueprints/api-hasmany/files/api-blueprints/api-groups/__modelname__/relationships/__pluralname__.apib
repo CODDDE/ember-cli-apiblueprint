@@ -10,7 +10,7 @@
 
 + Response 200 (application/vnd.api+json)
   + Attributes (object)
-      + data (array[<%= capitalCamelizedModelType %>Type], fixed-type) - related objects serialized
+      + data (array[<%= capitalCamelizedModelType %>Type], fixed-type, required) - related objects serialized
 
 <!-- include(../../../utils/401-response.apib) -->
 <!-- include(../../../utils/403-response.apib) -->
@@ -25,7 +25,7 @@
 
             Authorization: Bearer e9629c2a-6763-45f4-9d3a-1b2c7822febe
   + Attributes (object)
-      + data (array[<%= capitalCamelizedModelType %>Type]) - related objects serialized
+      + data (array[<%= capitalCamelizedModelType %>Type], fixed-type, required) - related objects serialized
 
 
 + Response 201 ()
@@ -44,7 +44,7 @@
 
             Authorization: Bearer e9629c2a-6763-45f4-9d3a-1b2c7822febe
   + Attributes (object)
-      + data (array[<%= capitalCamelizedModelType %>Type]) - related objects serialized
+      + data (array[<%= capitalCamelizedModelType %>Type], fixed-type, required) - related objects serialized
 
 
 + Response 204 ()
@@ -71,7 +71,7 @@
 
             Authorization: Bearer e9629c2a-6763-45f4-9d3a-1b2c7822febe
   + Attributes (object)
-      + data (array[<%= capitalCamelizedModelType %>Type]) - related objects serialized
+      + data (array[<%= capitalCamelizedModelType %>Type], fixed-type, required) - related objects serialized
 
 
 + Response 200 ()
